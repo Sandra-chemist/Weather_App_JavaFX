@@ -20,6 +20,13 @@ public class MainScreenController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        MainPaneController mainPaneController = loader.getController();
+        mainPaneController.setMainScreenController(this);
+        setScreen(pane);
+    }
+
+    public void setScreen(Pane pane) {
+        mainStackPane.getChildren().clear();
         mainStackPane.getChildren().add(pane);
     }
 }
