@@ -1,15 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weather.controllers.WeatherAppController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="weather.controllers.WeatherAppController">
    <children>
-      <Label layoutX="279.0" layoutY="61.0" text="Weather">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
+      <Pane layoutX="4.0" layoutY="5.0" prefHeight="490.0" prefWidth="395.0" style="-fx-border-color: black;">
+         <children>
+            <Label layoutX="25.0" layoutY="51.0" prefHeight="17.0" prefWidth="29.0" text="City:" />
+            <TextField layoutX="59.0" layoutY="49.0" prefHeight="25.0" prefWidth="306.0" />
+            <Label layoutX="175.0" layoutY="18.0" text="I am in:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Pane layoutX="6.0" layoutY="84.0" prefHeight="198.0" prefWidth="383.0" style="-fx-border-color: black;">
+               <children>
+                  <Label fx:id="titleCurrentWeatherFirstPane" layoutX="141.0" layoutY="13.0" prefHeight="20.0" prefWidth="107.0" text="Current Weather">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="13.0" layoutY="96.0" prefHeight="17.0" prefWidth="78.0" text="Temperature:" />
+                  <Label layoutX="15.0" layoutY="67.0" prefHeight="17.0" prefWidth="78.0" text="Weather:" />
+                  <Label layoutX="15.0" layoutY="125.0" prefHeight="17.0" prefWidth="78.0" text="Humitiy:" />
+                  <ImageView fitHeight="137.0" fitWidth="172.0" layoutX="198.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Pane>
+            <Pane layoutX="6.0" layoutY="288.0" prefHeight="198.0" prefWidth="383.0" style="-fx-border-color: black;">
+               <children>
+                  <Pane layoutX="5.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;" />
+                  <Pane layoutX="100.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;" />
+                  <Pane layoutX="195.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;" />
+                  <Pane layoutX="289.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;" />
+               </children>
+            </Pane>
+            <Label fx:id="titleWeatherForecastFirstPane" layoutX="148.0" layoutY="297.0" prefHeight="20.0" prefWidth="113.0" text="Weather Forecast">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </Pane>

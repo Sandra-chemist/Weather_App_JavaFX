@@ -1,0 +1,11 @@
+#mainStackPane{
+    -fx-background-color: "#184e77";
+}
+
+.label{
+     -fx-text-fill: white;
+}
+
+#titleApp{
+    -fx-font-weight: bold;
+}

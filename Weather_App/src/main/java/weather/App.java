@@ -19,7 +19,8 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/weather/MainScreen.fxml"));
         StackPane stackPane = loader.load();
-        Scene scene = new Scene(stackPane, 600, 400);
+        Scene scene = new Scene(stackPane, 800, 500);
+        scene.getStylesheets().add(getClass().getResource("/weather/css/application.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("Weather application");
         stage.show();
