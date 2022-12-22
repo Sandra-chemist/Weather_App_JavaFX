@@ -1,4 +1,13 @@
+#mainStackPane{
+    -fx-background-color: "#184e77";
+}
+
 #titleCurrentWeatherFirstPane,
 #titleWeatherForecastFirstPane{
-    -fx-background-color: "#a7c957";
+     -fx-text-fill: white;
+}
+
+#titleApp{
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
