@@ -3,16 +3,21 @@ package weather.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class WeatherAppController{
 
     private MainScreenController mainScreenController;
 
     @FXML
     private Label currDate;
+    Date date = new Date();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @FXML
     void setLocation() {
-        currDate.setText("2022-12-30");
+        currDate.setText(dateFormat.format(date));
     }
 
     public void setMainScreenController(MainScreenController mainScreenController) {
