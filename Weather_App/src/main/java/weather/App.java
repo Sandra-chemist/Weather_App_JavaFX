@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import weather.view.ViewFactory;
 
 import java.io.IOException;
 
@@ -17,13 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/weather/MainScreen.fxml"));
-        StackPane stackPane = loader.load();
-        Scene scene = new Scene(stackPane, 800, 500);
-        scene.getStylesheets().add(getClass().getResource("/weather/css/application.css").toExternalForm());
-        stage.setScene(scene);
-        stage.setTitle("Weather application");
-        stage.show();
-
+        ViewFactory viewFactory = new ViewFactory();
+        viewFactory.showMainWindow();
     }
 }
