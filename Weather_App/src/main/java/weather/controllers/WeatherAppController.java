@@ -8,11 +8,11 @@ public class WeatherAppController{
     private MainScreenController mainScreenController;
 
     @FXML
-    private Label date;
+    private Label currDate;
 
     @FXML
     void setLocation() {
-        date.setText("2022-12-30");
+        currDate.setText("2022-12-30");
     }
 
     public void setMainScreenController(MainScreenController mainScreenController) {
