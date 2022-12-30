@@ -19,6 +19,8 @@ public class MainPaneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        WeatherAppController weatherAppController = loader.getController();
+        weatherAppController.setMainScreenController(mainScreenController);
         mainScreenController.setScreen(pane);
 
     }

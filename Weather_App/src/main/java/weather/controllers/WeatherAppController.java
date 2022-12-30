@@ -1,18 +1,22 @@
 package weather.controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import weather.model.CurrentDate;
 
 public class WeatherAppController{
 
-    CurrentDate currentDate;
+    private MainScreenController mainScreenController;
+
     @FXML
     private Label date;
 
-    public void setUpCurrentDate(){
-        date.setText(currentDate.getDate());
+    @FXML
+    void setLocation() {
+        date.setText("2022-12-30");
+    }
+
+    public void setMainScreenController(MainScreenController mainScreenController) {
+        this.mainScreenController = mainScreenController;
     }
 
 }
