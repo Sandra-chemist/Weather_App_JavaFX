@@ -1,6 +1,7 @@
 package weather.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Weather {
 
@@ -25,5 +26,27 @@ public class Weather {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Weather weather = (Weather) o;
+        return Double.compare(weather.tempInCelsius, tempInCelsius) == 0 && Objects.equals(cityName, weather.cityName) && Objects.equals(date, weather.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cityName, tempInCelsius, date);
+    }
+
+    @Override
+    public String toString() {
+        return "Weather{" +
+                "cityName='" + cityName + '\'' +
+                ", tempInCelsius=" + tempInCelsius +
+                ", date=" + date +
+                '}';
     }
 }
