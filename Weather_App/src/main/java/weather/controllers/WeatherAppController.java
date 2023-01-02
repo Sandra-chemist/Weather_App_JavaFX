@@ -9,6 +9,10 @@ import java.util.Date;
 public class WeatherAppController{
 
     private MainScreenController mainScreenController;
+    @FXML
+    private Label displayTemperature;
+    @FXML
+    private Label displayHumidity;
 
     @FXML
     private Label currDate;
