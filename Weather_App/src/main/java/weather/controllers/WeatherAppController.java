@@ -20,7 +20,7 @@ public class WeatherAppController{
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @FXML
-    void setLocation() {
+    void displayWeather() {
         currDate.setText(dateFormat.format(date));
     }
 
