@@ -12,7 +12,7 @@
       <Pane layoutX="4.0" layoutY="5.0" prefHeight="490.0" prefWidth="395.0" style="-fx-border-color: black;">
          <children>
             <Label layoutX="25.0" layoutY="51.0" prefHeight="17.0" prefWidth="29.0" text="City:" />
-            <TextField layoutX="59.0" layoutY="49.0" prefHeight="25.0" prefWidth="199.0" />
+            <TextField fx:id="locationInput" layoutX="59.0" layoutY="49.0" prefHeight="25.0" prefWidth="199.0" />
             <Label layoutX="175.0" layoutY="18.0" text="I am in:">
                <font>
                   <Font size="14.0" />
@@ -29,10 +29,11 @@
                   <Label layoutX="15.0" layoutY="67.0" prefHeight="17.0" prefWidth="78.0" text="Weather:" />
                   <Label layoutX="15.0" layoutY="125.0" prefHeight="17.0" prefWidth="78.0" text="Humidity:" />
                   <ImageView fitHeight="137.0" fitWidth="172.0" layoutX="198.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="currDate" layoutX="265.0" layoutY="15.0" prefHeight="17.0" prefWidth="107.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+                  <Label fx:id="currDate" alignment="CENTER_RIGHT" layoutX="301.0" layoutY="15.0" prefHeight="17.0" prefWidth="68.0" text="Date" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS" />
                   <Label fx:id="displayTemperature" layoutX="113.0" layoutY="96.0" text="Label" />
                   <Label fx:id="displayHumidity" layoutX="113.0" layoutY="125.0" text="Label" />
                   <Label fx:id="displayDescription" layoutX="112.0" layoutY="67.0" text="Label" />
+                  <Label fx:id="displayCity" layoutX="15.0" layoutY="15.0" text="City" />
                </children>
             </Pane>
             <Pane layoutX="6.0" layoutY="288.0" prefHeight="198.0" prefWidth="383.0" style="-fx-border-color: black;">

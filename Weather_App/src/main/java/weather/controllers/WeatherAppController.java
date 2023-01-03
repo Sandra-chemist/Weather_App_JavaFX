@@ -3,6 +3,7 @@ package weather.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import weather.model.Weather;
 import weather.model.WeatherService;
 import weather.model.WeatherServiceFactory;
@@ -24,6 +25,10 @@ public class WeatherAppController implements Initializable {
     private Label displayDescription;
     @FXML
     private Label currDate;
+    @FXML
+    private Label displayCity;
+    @FXML
+    private TextField locationInput;
     Date date = new Date();
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -35,12 +40,14 @@ public class WeatherAppController implements Initializable {
     @FXML
     void displayWeather() {
         currDate.setText(dateFormat.format(date));
-        String cityName = "Warsow";
+        String cityName = locationInput.getText();;
         Weather weather = weatherService.getWeather(cityName);
-        displayWeather(weather);
+        displayCurrentWeather(weather);
     }
 
-    private void displayWeather(Weather weather) {
+    private void displayCurrentWeather(Weather weather) {
+        String location = locationInput.getText();
+        displayCity.setText(location);
         displayTemperature.setText("" + weather.getTempInClesius());
         displayHumidity.setText("70%");
         displayDescription.setText("few clouds");
@@ -49,6 +56,5 @@ public class WeatherAppController implements Initializable {
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
     }
-
 
 }
