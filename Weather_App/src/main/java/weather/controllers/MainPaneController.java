@@ -5,9 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-
 public class MainPaneController {
-
     private MainScreenController mainScreenController;
 
     @FXML

@@ -1,12 +1,16 @@
 package weather.model;
 
+import net.aksingh.owmjapis.core.OWM;
+import weather.config.Config;
 import weather.model.client.WeatherClient;
 
 public class WeatherService {
-//    private final OWM weatherMap;
-//
-//   public WeatherService(){
-//       weatherMap = new OWM(Config.getAPIKey());    }
+
+//    private OWM weatherMap;
+//    public WeatherService(){
+//       weatherMap = new OWM(Config.getAPIKey());
+//       this.weatherMap = weatherMap;
+//       }
 
    private final WeatherClient weatherClient;
 
