@@ -3,11 +3,10 @@ package weather.model;
 import weather.model.client.WeatherClient;
 
 public class WeatherService {
-    // private final OWM weatherMap;
-
-//    public WeatherService(){
-//        weatherMap = new OWM(Config.getAPIKey());
-//    }
+//    private final OWM weatherMap;
+//
+//   public WeatherService(){
+//       weatherMap = new OWM(Config.getAPIKey());    }
 
    private final WeatherClient weatherClient;
 
