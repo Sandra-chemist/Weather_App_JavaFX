@@ -1,14 +1,8 @@
 package weather;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import weather.view.ViewFactory;
-
-import java.io.IOException;
 
 public class App extends Application {
 

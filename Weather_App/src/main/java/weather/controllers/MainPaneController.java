@@ -5,9 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-
 public class MainPaneController {
-
     private MainScreenController mainScreenController;
 
     @FXML
@@ -19,6 +17,8 @@ public class MainPaneController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        WeatherAppController weatherAppController = loader.getController();
+        weatherAppController.setMainScreenController(mainScreenController);
         mainScreenController.setScreen(pane);
 
     }
