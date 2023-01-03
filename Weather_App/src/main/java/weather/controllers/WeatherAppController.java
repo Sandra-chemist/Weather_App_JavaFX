@@ -21,6 +21,8 @@ public class WeatherAppController implements Initializable {
     @FXML
     private Label displayHumidity;
     @FXML
+    private Label displayDescription;
+    @FXML
     private Label currDate;
     Date date = new Date();
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -41,6 +43,7 @@ public class WeatherAppController implements Initializable {
     private void displayWeather(Weather weather) {
         displayTemperature.setText("" + weather.getTempInClesius());
         displayHumidity.setText("70%");
+        displayDescription.setText("few clouds");
     }
 
     public void setMainScreenController(MainScreenController mainScreenController) {
