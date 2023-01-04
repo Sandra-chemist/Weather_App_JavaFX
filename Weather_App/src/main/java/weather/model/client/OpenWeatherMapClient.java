@@ -15,8 +15,15 @@ public class OpenWeatherMapClient implements WeatherClient {
     @Override
     public Weather getWeather(String cityName) {
         String response = null;
-        response = restTemplate.getForObject(WEATHER_URL + "weather?q={city}&appid=" + Config.getAPIKey() + "&units=" + UNITS, String.class, "Warszawa");
-        System.out.println(response);
+
+        try {
+            response = restTemplate.getForObject(WEATHER_URL + "weather?q={city}&appid=" + Config.getAPIKey() + "&units=" + UNITS, String.class, cityName);
+            System.out.println(response);
+        }
+        catch (Exception e){
+            System.out.println("City not found");
+        }
+
         return new Weather(cityName, 10, 50, "clouds", LocalDate.now() );
     }
 }
