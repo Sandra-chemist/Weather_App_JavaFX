@@ -1,6 +1,6 @@
 package weather.model;
 
-import weather.model.client.DefaultWeatherClient;
+import weather.model.client.OpenWeatherMapClient;
 import weather.model.client.WeatherClient;
 
 public class WeatherServiceFactory {
@@ -9,8 +9,8 @@ public class WeatherServiceFactory {
         return new WeatherService((WeatherClient) createWeatherClient());
     }
 
-    private static DefaultWeatherClient createWeatherClient() {
-        return new DefaultWeatherClient();
+    private static OpenWeatherMapClient createWeatherClient() {
+        return new OpenWeatherMapClient();
     }
 
 

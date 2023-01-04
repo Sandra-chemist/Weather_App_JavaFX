@@ -4,7 +4,7 @@ import weather.model.Weather;
 
 import java.time.LocalDate;
 
-public class DefaultWeatherClient implements WeatherClient {
+public class OpenWeatherMapClient implements WeatherClient {
 
     @Override
     public Weather getWeather(String cityName) {
