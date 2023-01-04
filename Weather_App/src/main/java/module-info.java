@@ -3,6 +3,7 @@ module weather {
     requires javafx.fxml;
     requires owm.japis;
     requires java.sql;
+    requires spring.web;
 
     opens weather to javafx.fxml;
     exports weather;
