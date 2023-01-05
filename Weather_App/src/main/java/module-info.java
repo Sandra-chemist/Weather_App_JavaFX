@@ -4,7 +4,7 @@ module weather {
     requires owm.japis;
     requires java.sql;
     requires spring.web;
-    requires com.google.gson;
+    requires org.json;
 
     opens weather to javafx.fxml;
     exports weather;

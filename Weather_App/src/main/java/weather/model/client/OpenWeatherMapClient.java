@@ -26,4 +26,6 @@ public class OpenWeatherMapClient implements WeatherClient {
 
         return new Weather(cityName, 10, 50, "clouds", LocalDate.now() );
     }
+
+
 }

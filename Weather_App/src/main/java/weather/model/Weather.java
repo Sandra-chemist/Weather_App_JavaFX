@@ -24,7 +24,7 @@ public class Weather {
         return cityName;
     }
 
-    public double getTempInClesius() {
+    public double getTempInCelsius() {
         return tempInCelsius;
     }
     public int getHumidityInPercent() {
