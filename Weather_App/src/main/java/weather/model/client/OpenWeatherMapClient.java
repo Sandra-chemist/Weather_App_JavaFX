@@ -28,4 +28,5 @@ public class OpenWeatherMapClient implements WeatherClient {
     }
 
 
+
 }
