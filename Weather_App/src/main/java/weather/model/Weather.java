@@ -1,10 +1,17 @@
 package weather.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Weather {
 
+    public List<WeatherDescription> getWeather() {
+        return weather;
+    }
+
+    List<WeatherDescription> weather;
+    public int cod;
     private final String name;
     private final double temp;
     private final int humidity;

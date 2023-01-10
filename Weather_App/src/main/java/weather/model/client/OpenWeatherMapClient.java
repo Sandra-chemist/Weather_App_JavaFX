@@ -1,10 +1,12 @@
 package weather.model.client;
 
+import com.google.gson.Gson;
 import org.springframework.web.client.RestTemplate;
 import weather.config.Config;
 import weather.model.Weather;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class OpenWeatherMapClient implements WeatherClient {
 
@@ -19,6 +21,22 @@ public class OpenWeatherMapClient implements WeatherClient {
         try {
             response = restTemplate.getForObject(WEATHER_URL + "weather?q={city}&appid=" + Config.getAPIKey() + "&units=" + UNITS, String.class, cityName);
             System.out.println(response);
+
+            try {
+//                String jsonText =  "{\"name\": \"Sandra\", \"age\": 24, \"weather\": [{\"id\": 500, \"description\": \"light rain\"}]}";
+//                System.out.println(jsonText);
+//
+//            Gson gson = new Gson();
+//            User user = gson.fromJson(jsonText, User.class);
+//                System.out.println(user.getWeather());
+
+                Gson gson = new Gson();
+                Weather weather = gson.fromJson(response, Weather.class);
+                System.out.println(weather.getWeather());
+
+            } catch (Exception ex){
+                System.out.println("Error");
+            }
 
         }
         catch (Exception e){
