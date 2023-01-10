@@ -19,6 +19,7 @@ public class OpenWeatherMapClient implements WeatherClient {
         try {
             response = restTemplate.getForObject(WEATHER_URL + "weather?q={city}&appid=" + Config.getAPIKey() + "&units=" + UNITS, String.class, cityName);
             System.out.println(response);
+
         }
         catch (Exception e){
             System.out.println("City not found");

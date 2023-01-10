@@ -5,34 +5,34 @@ import java.util.Objects;
 
 public class Weather {
 
-    private final String cityName;
-    private final double tempInCelsius;
-    private final int humidityInPercent;
-    private final String descriptionWeather;
+    private final String name;
+    private final double temp;
+    private final int humidity;
+    private final String description;
 
     private final LocalDate date;
 
     public Weather(String cityName, double tempInCelsius, int humidityInPercent, String descriptionWeather, LocalDate date) {
-        this.cityName = cityName;
-        this.tempInCelsius = tempInCelsius;
-        this.humidityInPercent = humidityInPercent;
-        this.descriptionWeather = descriptionWeather;
+        this.name = cityName;
+        this.temp = tempInCelsius;
+        this.humidity = humidityInPercent;
+        this.description = descriptionWeather;
         this.date = date;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getName() {
+        return name;
     }
 
-    public double getTempInCelsius() {
-        return tempInCelsius;
+    public double getTemp() {
+        return temp;
     }
-    public int getHumidityInPercent() {
-        return humidityInPercent;
+    public int getHumidity() {
+        return humidity;
     }
 
-    public String getDescriptionWeather() {
-        return descriptionWeather;
+    public String getDescription() {
+        return description;
     }
 
     public LocalDate getDate() {
@@ -44,19 +44,19 @@ public class Weather {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Weather weather = (Weather) o;
-        return Double.compare(weather.tempInCelsius, tempInCelsius) == 0 && Objects.equals(cityName, weather.cityName) && Objects.equals(date, weather.date);
+        return Double.compare(weather.temp, temp) == 0 && Objects.equals(name, weather.name) && Objects.equals(date, weather.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cityName, tempInCelsius, date);
+        return Objects.hash(name, temp, date);
     }
 
     @Override
     public String toString() {
         return "Weather{" +
-                "cityName='" + cityName + '\'' +
-                ", tempInCelsius=" + tempInCelsius +
+                "cityName='" + name + '\'' +
+                ", tempInCelsius=" + temp +
                 ", date=" + date +
                 '}';
     }

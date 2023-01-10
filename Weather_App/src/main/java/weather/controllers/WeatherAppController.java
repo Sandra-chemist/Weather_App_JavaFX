@@ -48,9 +48,9 @@ public class WeatherAppController implements Initializable {
     private void displayCurrentWeather(Weather weather) {
         String location = locationInput.getText();
         displayCity.setText(location);
-        displayTemperature.setText("" + weather.getTempInCelsius());
-        displayHumidity.setText("" + weather.getHumidityInPercent());
-        displayDescription.setText("" + weather.getDescriptionWeather());
+        displayTemperature.setText("" + weather.getTemp());
+        displayHumidity.setText("" + weather.getHumidity());
+        displayDescription.setText("" + weather.getDescription());
     }
 
     public void setMainScreenController(MainScreenController mainScreenController) {
