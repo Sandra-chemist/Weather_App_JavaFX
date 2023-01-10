@@ -21,6 +21,7 @@ public class Weather {
     private final double temp;
     private final int humidity;
     private final String description;
+
     private final LocalDate date;
 
     public Weather(String cityName, double tempInCelsius, int humidityInPercent, String descriptionWeather, LocalDate date) {
