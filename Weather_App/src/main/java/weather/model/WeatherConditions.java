@@ -3,6 +3,7 @@ package weather.model;
 public class WeatherConditions {
 
     private double temp;
+    private int humidity;
 
     public double getTemp() {
         return temp;
@@ -11,8 +12,6 @@ public class WeatherConditions {
     public int getHumidity() {
         return humidity;
     }
-
-    private int humidity;
 
     @Override
     public String toString() {

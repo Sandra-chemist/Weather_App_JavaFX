@@ -14,9 +14,8 @@ public class Weather {
     public WeatherConditions getMain() {
         return main;
     }
-
     WeatherConditions main;
-    public int cod;
+
     private final String name;
     private final double temp;
     private final int humidity;

@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import weather.model.Weather;
+import weather.model.WeatherConditions;
 import weather.model.WeatherService;
 import weather.model.WeatherServiceFactory;
 
@@ -14,6 +15,8 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class WeatherAppController implements Initializable {
+
+    WeatherConditions weatherConditions;
 
     private MainScreenController mainScreenController;
     private WeatherService weatherService;
@@ -48,8 +51,8 @@ public class WeatherAppController implements Initializable {
     private void displayCurrentWeather(Weather weather) {
         String location = locationInput.getText();
         displayCity.setText(location);
-        displayTemperature.setText("" + weather.getTemp());
-        displayHumidity.setText("" + weather.getHumidity());
+        displayTemperature.setText("" + weather.getTemp() + " \u00b0C");
+        displayHumidity.setText("" + weather.getHumidity() + " %");
         displayDescription.setText("" + weather.getDescription());
     }
 

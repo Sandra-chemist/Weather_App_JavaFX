@@ -2,15 +2,15 @@ package weather.model;
 
 public class WeatherDescription {
 
-    private String description;
-    private String main;
-
-    public String getDescription() {
-        return description;
+    public String getMain() {
+        return main;
     }
+
+    private String main;
 
     @Override
     public String toString() {
-        return description;
+        return main;
     }
+
 }
