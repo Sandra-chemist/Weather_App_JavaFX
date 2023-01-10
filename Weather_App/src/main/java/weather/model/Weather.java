@@ -9,14 +9,18 @@ public class Weather {
     public List<WeatherDescription> getWeather() {
         return weather;
     }
-
     List<WeatherDescription> weather;
+
+    public WeatherConditions getMain() {
+        return main;
+    }
+
+    WeatherConditions main;
     public int cod;
     private final String name;
     private final double temp;
     private final int humidity;
     private final String description;
-
     private final LocalDate date;
 
     public Weather(String cityName, double tempInCelsius, int humidityInPercent, String descriptionWeather, LocalDate date) {

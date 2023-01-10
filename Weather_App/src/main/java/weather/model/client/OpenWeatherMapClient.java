@@ -33,6 +33,7 @@ public class OpenWeatherMapClient implements WeatherClient {
                 Gson gson = new Gson();
                 Weather weather = gson.fromJson(response, Weather.class);
                 System.out.println(weather.getWeather());
+                System.out.println(weather.getMain());
 
             } catch (Exception ex){
                 System.out.println("Error");
