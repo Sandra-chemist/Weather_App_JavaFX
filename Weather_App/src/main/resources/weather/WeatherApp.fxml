@@ -28,7 +28,7 @@
                   <Label layoutX="13.0" layoutY="96.0" prefHeight="17.0" prefWidth="78.0" text="Temperature:" />
                   <Label layoutX="15.0" layoutY="67.0" prefHeight="17.0" prefWidth="78.0" text="Weather:" />
                   <Label layoutX="15.0" layoutY="125.0" prefHeight="17.0" prefWidth="78.0" text="Humidity:" />
-                  <ImageView fitHeight="137.0" fitWidth="172.0" layoutX="198.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="weatherIcon" fitHeight="137.0" fitWidth="172.0" layoutX="198.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="currDate" alignment="CENTER_RIGHT" layoutX="301.0" layoutY="15.0" prefHeight="17.0" prefWidth="68.0" text="Date" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS" />
                   <Label fx:id="displayTemperature" layoutX="113.0" layoutY="96.0" text="Label" />
                   <Label fx:id="displayHumidity" layoutX="113.0" layoutY="125.0" text="Label" />
