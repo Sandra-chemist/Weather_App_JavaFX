@@ -1,22 +1,15 @@
 package weather.model.client;
 
-<<<<<<< HEAD
-=======
 import com.google.gson.Gson;
 import org.springframework.web.client.RestTemplate;
 import weather.config.Config;
->>>>>>> feature_fetch-current-weather
+
 import weather.model.Weather;
 
 import java.time.LocalDate;
 
 public class OpenWeatherMapClient implements WeatherClient {
 
-<<<<<<< HEAD
-    @Override
-    public Weather getWeather(String cityName) {
-        return new Weather(cityName, 10, LocalDate.now());
-=======
     private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/";
     private static final String UNITS = "metric";
     private static String iconURL = "http://openweathermap.org/img/wn/";
@@ -43,6 +36,6 @@ public class OpenWeatherMapClient implements WeatherClient {
         String icon = iconURL + iconNumber + "@2x.png";
 
         return new Weather(cityName, tempInCelsium, humidityInPercent, description, LocalDate.now(), icon);
->>>>>>> feature_fetch-current-weather
+
     }
 }
