@@ -13,5 +13,4 @@ public class WeatherServiceFactory {
         return new OpenWeatherMapClient();
     }
 
-
 }

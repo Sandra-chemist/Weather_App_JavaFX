@@ -4,7 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import weather.model.Weather;
+import weather.model.WeatherConditions;
 import weather.model.WeatherService;
 import weather.model.WeatherServiceFactory;
 
@@ -15,6 +18,9 @@ import java.util.ResourceBundle;
 
 public class WeatherAppController implements Initializable {
 
+    WeatherConditions weatherConditions;
+    @FXML
+    private ImageView weatherIcon;
     private MainScreenController mainScreenController;
     private WeatherService weatherService;
     @FXML
@@ -36,7 +42,6 @@ public class WeatherAppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         weatherService = WeatherServiceFactory.createWeatherService();
     }
-
     @FXML
     void displayWeather() {
         currDate.setText(dateFormat.format(date));
@@ -48,9 +53,10 @@ public class WeatherAppController implements Initializable {
     private void displayCurrentWeather(Weather weather) {
         String location = locationInput.getText();
         displayCity.setText(location);
-        displayTemperature.setText("" + weather.getTempInClesius());
-        displayHumidity.setText("70%");
-        displayDescription.setText("few clouds");
+        displayTemperature.setText("" + weather.getTemp() + " \u00b0C");
+        displayHumidity.setText("" + weather.getHumidity() + " %");
+        displayDescription.setText("" + weather.getDescription());
+        weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
     }
 
     public void setMainScreenController(MainScreenController mainScreenController) {

@@ -28,12 +28,12 @@
                   <Label layoutX="13.0" layoutY="96.0" prefHeight="17.0" prefWidth="78.0" text="Temperature:" />
                   <Label layoutX="15.0" layoutY="67.0" prefHeight="17.0" prefWidth="78.0" text="Weather:" />
                   <Label layoutX="15.0" layoutY="125.0" prefHeight="17.0" prefWidth="78.0" text="Humidity:" />
-                  <ImageView fitHeight="137.0" fitWidth="172.0" layoutX="198.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="currDate" alignment="CENTER_RIGHT" layoutX="301.0" layoutY="15.0" prefHeight="17.0" prefWidth="68.0" text="Date" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS" />
-                  <Label fx:id="displayTemperature" layoutX="113.0" layoutY="96.0" text="Label" />
-                  <Label fx:id="displayHumidity" layoutX="113.0" layoutY="125.0" text="Label" />
-                  <Label fx:id="displayDescription" layoutX="112.0" layoutY="67.0" text="Label" />
-                  <Label fx:id="displayCity" layoutX="15.0" layoutY="15.0" text="City" />
+                  <ImageView fx:id="weatherIcon" fitHeight="137.0" fitWidth="172.0" layoutX="198.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="currDate" alignment="CENTER_RIGHT" layoutX="301.0" layoutY="15.0" prefHeight="17.0" prefWidth="68.0" textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS" />
+                  <Label fx:id="displayTemperature" layoutX="113.0" layoutY="96.0" />
+                  <Label fx:id="displayHumidity" layoutX="113.0" layoutY="125.0" />
+                  <Label fx:id="displayDescription" layoutX="112.0" layoutY="67.0" />
+                  <Label fx:id="displayCity" layoutX="15.0" layoutY="15.0" />
                </children>
             </Pane>
             <Pane layoutX="6.0" layoutY="288.0" prefHeight="198.0" prefWidth="383.0" style="-fx-border-color: black;">
