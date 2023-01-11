@@ -42,7 +42,6 @@ public class WeatherAppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         weatherService = WeatherServiceFactory.createWeatherService();
     }
-
     @FXML
     void displayWeather() {
         currDate.setText(dateFormat.format(date));

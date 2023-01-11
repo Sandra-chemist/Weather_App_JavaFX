@@ -12,9 +12,4 @@ public class WeatherConditions {
     public int getHumidity() {
         return humidity;
     }
-
-    @Override
-    public String toString() {
-        return temp + "," + humidity;
-    }
 }

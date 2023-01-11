@@ -11,9 +11,5 @@ public class WeatherDescription {
     public String getIcon() {
         return icon;
     }
-//    @Override
-//    public String toString() {
-//        return main + "," + icon;
-//    }
 
 }

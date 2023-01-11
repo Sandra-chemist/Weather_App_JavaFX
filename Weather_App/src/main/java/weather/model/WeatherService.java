@@ -1,7 +1,5 @@
 package weather.model;
 
-import net.aksingh.owmjapis.core.OWM;
-import weather.config.Config;
 import weather.model.client.WeatherClient;
 
 public class WeatherService {
