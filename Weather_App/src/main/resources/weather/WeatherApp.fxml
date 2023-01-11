@@ -38,7 +38,13 @@
             </Pane>
             <Pane layoutX="6.0" layoutY="288.0" prefHeight="198.0" prefWidth="383.0" style="-fx-border-color: black;">
                <children>
-                  <Pane layoutX="5.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;" />
+                  <Pane layoutX="5.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;">
+                     <children>
+                        <Label fx:id="dateOne" layoutX="31.0" layoutY="15.0" text="date" />
+                        <Label fx:id="weatherOne" layoutX="28.0" layoutY="55.0" text="Label" />
+                        <Label fx:id="temperatureOne1" layoutX="28.0" layoutY="82.0" text="Label" />
+                        <Label fx:id="humidityOne" layoutX="28.0" layoutY="110.0" text="Label" />
+                     </children></Pane>
                   <Pane layoutX="100.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;" />
                   <Pane layoutX="195.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;" />
                   <Pane layoutX="289.0" layoutY="37.0" prefHeight="158.0" prefWidth="89.0" style="-fx-border-color: black;" />

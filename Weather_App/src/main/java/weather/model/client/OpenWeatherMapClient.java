@@ -11,17 +11,21 @@ import java.time.LocalDate;
 public class OpenWeatherMapClient implements WeatherClient {
 
     private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/";
-    private static final String UNITS = "metric";
+    private static final String UNITS = "&units=metric";
     private static String iconURL = "http://openweathermap.org/img/wn/";
     private RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplateWeatherForecast = new RestTemplate();
 
     @Override
     public Weather getWeather(String cityName) {
         String response = null;
+        String responseWeatherForecast = null;
 
         try {
-            response = restTemplate.getForObject(WEATHER_URL + "weather?q={city}&appid=" + Config.getAPIKey() + "&units=" + UNITS, String.class, cityName);
-
+            response = restTemplate.getForObject(WEATHER_URL + "weather?q={city}&appid=" + Config.getAPIKey() + UNITS, String.class, cityName);
+            System.out.println(response);
+            responseWeatherForecast = restTemplateWeatherForecast.getForObject(WEATHER_URL+ "forecast?q={city}&appid=" + Config.getAPIKey() + UNITS , String.class, cityName);
+            System.out.println(responseWeatherForecast);
         }
         catch (Exception e){
             System.out.println("City not found");
