@@ -13,11 +13,4 @@ public class Main {
         return humidity;
     }
 
-    @Override
-    public String toString() {
-        return "Main{" +
-                "temp=" + temp +
-                ", humidity=" + humidity +
-                '}';
-    }
 }

@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import weather.model.Weather;
-import weather.model.WeatherConditions;
 import weather.model.WeatherService;
 import weather.model.WeatherServiceFactory;
 
@@ -17,8 +16,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class WeatherAppController implements Initializable {
-
-    WeatherConditions weatherConditions;
     @FXML
     private ImageView weatherIcon;
     private MainScreenController mainScreenController;
@@ -35,6 +32,8 @@ public class WeatherAppController implements Initializable {
     private Label displayCity;
     @FXML
     private TextField locationInput;
+    @FXML
+    private Label temperatureOne;
     Date date = new Date();
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -57,6 +56,10 @@ public class WeatherAppController implements Initializable {
         displayHumidity.setText("" + weather.getHumidity() + " %");
         displayDescription.setText("" + weather.getDescription());
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
+    }
+
+    private void displayWeatherForecast(Weather weather){
+        temperatureOne.setText("" + weather.getList().get(0).getMain().getTemp());
     }
 
     public void setMainScreenController(MainScreenController mainScreenController) {

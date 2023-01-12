@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public class OpenWeatherMapClient implements WeatherClient {
 
-    private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/";
+    private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/forecast?q={city}&appid=";
     private static final String UNITS = "&units=metric";
     private static String iconURL = "http://openweathermap.org/img/wn/";
     private RestTemplate restTemplate = new RestTemplate();
@@ -20,44 +20,42 @@ public class OpenWeatherMapClient implements WeatherClient {
     @Override
     public Weather getWeather(String cityName) {
         String response = null;
-        String responseWeatherForecast = null;
 
         try {
-            response = restTemplate.getForObject(WEATHER_URL + "weather?q={city}&appid=" + Config.getAPIKey() + UNITS, String.class, cityName);
+            response = restTemplateWeatherForecast.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
             System.out.println(response);
-            responseWeatherForecast = restTemplateWeatherForecast.getForObject(WEATHER_URL+ "forecast?q={city}&appid=" + Config.getAPIKey() + UNITS , String.class, cityName);
-            System.out.println(responseWeatherForecast);
 
-            Gson gson2 = new Gson();
-            Weather weather = gson2.fromJson(responseWeatherForecast, Weather.class);
-            WeatherList liste = weather.getList().get(0);
-            WeatherList liste4 = weather.getList().get(8);
-            WeatherList liste5 = weather.getList().get(16);
-            WeatherList liste6 = weather.getList().get(24);
-            WeatherList liste7 = weather.getList().get(32);
-
-            System.out.println(liste);
-            System.out.println(liste4);
-            System.out.println(liste5);
-            System.out.println(liste6);
-            System.out.println(liste7);
-
-            String dateOne = weather.getList().get(16).getDt_txt();
-            System.out.println(dateOne);
         }
         catch (Exception e){
             System.out.println("City not found");
         }
+
         Gson gson = new Gson();
         Weather weather = gson.fromJson(response, Weather.class);
+        WeatherList liste = weather.getList().get(0);
+        WeatherList liste4 = weather.getList().get(8);
+        WeatherList liste5 = weather.getList().get(16);
+        WeatherList liste6 = weather.getList().get(24);
+        WeatherList liste7 = weather.getList().get(32);
 
-        double tempInCelsium = weather.getMain().getTemp();
-        int humidityInPercent = weather.getMain().getHumidity();
-        String description = weather.getWeather().get(0).getMain();
-        String iconNumber = weather.getWeather().get(0).getIcon();
+        System.out.println(liste);
+        System.out.println(liste4);
+        System.out.println(liste5);
+        System.out.println(liste6);
+        System.out.println(liste7);
+
+        String dateOne = weather.getList().get(0).getDt_txt();
+        System.out.println(dateOne);
+
+        double tempInCelsius = weather.getList().get(0).getMain().getTemp();
+        int humidityInPercent = (int) weather.getList().get(0).getMain().getHumidity();
+        String iconNumber = weather.getList().get(0).getWeather().get(0).getIcon();
         String icon = iconURL + iconNumber + "@2x.png";
+        String description = weather.getList().get(0).getWeather().get(0).getMain();
 
-        return new Weather(cityName, tempInCelsium, humidityInPercent, description, LocalDate.now(), icon);
-
+        System.out.println(tempInCelsius);
+        System.out.println(humidityInPercent);
+        System.out.println(description);
+        return new Weather(cityName, tempInCelsius, humidityInPercent, description, LocalDate.now(), icon);
     }
 }
