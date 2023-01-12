@@ -12,10 +12,15 @@ import weather.model.WeatherServiceFactory;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class WeatherAppController implements Initializable {
+
+    @FXML
+    private Label dateOne;
     @FXML
     private ImageView weatherIcon;
     private MainScreenController mainScreenController;
@@ -34,8 +39,6 @@ public class WeatherAppController implements Initializable {
     private TextField locationInput;
     @FXML
     private Label temperatureOne;
-    Date date = new Date();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,7 +46,6 @@ public class WeatherAppController implements Initializable {
     }
     @FXML
     void displayWeather() {
-        currDate.setText(dateFormat.format(date));
         String cityName = locationInput.getText();;
         Weather weather = weatherService.getWeather(cityName);
         displayCurrentWeather(weather);
@@ -51,11 +53,13 @@ public class WeatherAppController implements Initializable {
 
     private void displayCurrentWeather(Weather weather) {
         String location = locationInput.getText();
+        currDate.setText("" + weather.getDate());
         displayCity.setText(location);
         displayTemperature.setText("" + weather.getTemp() + " \u00b0C");
         displayHumidity.setText("" + weather.getHumidity() + " %");
         displayDescription.setText("" + weather.getDescription());
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
+        dateOne.setText(String.valueOf(LocalDate.now().plusDays(1)));
     }
 
     private void displayWeatherForecast(Weather weather){

@@ -44,15 +44,14 @@ public class OpenWeatherMapClient implements WeatherClient {
         System.out.println(liste6);
         System.out.println(liste7);
 
-        String dateOne = weather.getList().get(0).getDt_txt();
-        System.out.println(dateOne);
-
+        String date = weather.getList().get(0).getDt_txt();
         double tempInCelsius = weather.getList().get(0).getMain().getTemp();
         int humidityInPercent = (int) weather.getList().get(0).getMain().getHumidity();
         String iconNumber = weather.getList().get(0).getWeather().get(0).getIcon();
         String icon = iconURL + iconNumber + "@2x.png";
         String description = weather.getList().get(0).getWeather().get(0).getMain();
 
+        System.out.println(date);
         System.out.println(tempInCelsius);
         System.out.println(humidityInPercent);
         System.out.println(description);
