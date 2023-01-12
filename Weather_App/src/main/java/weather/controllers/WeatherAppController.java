@@ -20,7 +20,13 @@ import java.util.ResourceBundle;
 public class WeatherAppController implements Initializable {
 
     @FXML
-    private Label dateOne;
+    private Label firstDate;
+    @FXML
+    private Label fourtDate;
+    @FXML
+    private Label secondDate;
+    @FXML
+    private Label thirdDate;
     @FXML
     private ImageView weatherIcon;
     private MainScreenController mainScreenController;
@@ -59,7 +65,10 @@ public class WeatherAppController implements Initializable {
         displayHumidity.setText("" + weather.getHumidity() + " %");
         displayDescription.setText("" + weather.getDescription());
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
-        dateOne.setText(String.valueOf(LocalDate.now().plusDays(1)));
+        firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
+        secondDate.setText(String.valueOf(LocalDate.now().plusDays(2)));
+        thirdDate.setText(String.valueOf(LocalDate.now().plusDays(3)));
+        fourtDate.setText(String.valueOf(LocalDate.now().plusDays(4)));
     }
 
     private void displayWeatherForecast(Weather weather){
