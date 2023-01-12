@@ -5,6 +5,7 @@ import org.springframework.web.client.RestTemplate;
 import weather.config.Config;
 
 import weather.model.Weather;
+import weather.model.WeatherList;
 
 import java.time.LocalDate;
 
@@ -26,6 +27,23 @@ public class OpenWeatherMapClient implements WeatherClient {
             System.out.println(response);
             responseWeatherForecast = restTemplateWeatherForecast.getForObject(WEATHER_URL+ "forecast?q={city}&appid=" + Config.getAPIKey() + UNITS , String.class, cityName);
             System.out.println(responseWeatherForecast);
+
+            Gson gson2 = new Gson();
+            Weather weather = gson2.fromJson(responseWeatherForecast, Weather.class);
+            WeatherList liste = weather.getList().get(0);
+            WeatherList liste4 = weather.getList().get(8);
+            WeatherList liste5 = weather.getList().get(16);
+            WeatherList liste6 = weather.getList().get(24);
+            WeatherList liste7 = weather.getList().get(32);
+
+            System.out.println(liste);
+            System.out.println(liste4);
+            System.out.println(liste5);
+            System.out.println(liste6);
+            System.out.println(liste7);
+
+            String dateOne = weather.getList().get(16).getDt_txt();
+            System.out.println(dateOne);
         }
         catch (Exception e){
             System.out.println("City not found");

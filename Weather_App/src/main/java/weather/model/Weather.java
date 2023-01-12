@@ -18,6 +18,12 @@ public class Weather {
     }
     WeatherConditions main;
 
+    public List<WeatherList> getList() {
+        return list;
+    }
+
+    List<WeatherList>list;
+
     private final String name;
     private final double temp;
     private final int humidity;
