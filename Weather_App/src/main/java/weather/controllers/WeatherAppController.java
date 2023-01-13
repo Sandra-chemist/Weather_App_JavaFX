@@ -44,7 +44,7 @@ public class WeatherAppController implements Initializable {
     @FXML
     private TextField locationInput;
     @FXML
-    private Label temperatureOne;
+    private Label firstWeather;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

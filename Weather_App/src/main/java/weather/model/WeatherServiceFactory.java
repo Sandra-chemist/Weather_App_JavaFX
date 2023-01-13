@@ -8,7 +8,6 @@ public class WeatherServiceFactory {
     public static WeatherService createWeatherService(){
         return new WeatherService((WeatherClient) createWeatherClient());
     }
-
     private static OpenWeatherMapClient createWeatherClient() {
         return new OpenWeatherMapClient();
     }

@@ -41,7 +41,7 @@
                   <Pane layoutX="5.0" layoutY="36.0" prefHeight="44.0" prefWidth="373.0" style="-fx-border-color: black;">
                      <children>
                         <Label fx:id="firstDate" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="15.0" prefHeight="17.0" prefWidth="158.0" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
-                        <Label fx:id="weatherOne" layoutX="173.0" layoutY="15.0" text="Label" />
+                        <Label fx:id="firstWeather" layoutX="173.0" layoutY="15.0" text="Label" />
                         <Label fx:id="temperatureOne" layoutX="237.0" layoutY="15.0" text="Label" />
                         <Label fx:id="humidityOne" layoutX="305.0" layoutY="15.0" text="Label" />
                      </children></Pane>
