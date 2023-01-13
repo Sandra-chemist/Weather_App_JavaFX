@@ -1,15 +1,16 @@
 package weather.model;
 
-public class WeatherConditions {
+public class Main {
 
     private double temp;
-    private int humidity;
+    private double humidity;
 
     public double getTemp() {
         return temp;
     }
 
-    public int getHumidity() {
+    public double getHumidity() {
         return humidity;
     }
+
 }

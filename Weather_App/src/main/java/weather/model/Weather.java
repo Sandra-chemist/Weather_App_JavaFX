@@ -8,15 +8,10 @@ import java.util.Objects;
 
 public class Weather {
 
-    public List<WeatherDescription> getWeather() {
-        return weather;
+    public List<WeatherList> getList() {
+        return list;
     }
-    List<WeatherDescription> weather;
-
-    public WeatherConditions getMain() {
-        return main;
-    }
-    WeatherConditions main;
+    List<WeatherList>list;
 
     private final String name;
     private final double temp;

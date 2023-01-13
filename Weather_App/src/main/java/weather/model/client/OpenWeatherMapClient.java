@@ -5,22 +5,25 @@ import org.springframework.web.client.RestTemplate;
 import weather.config.Config;
 
 import weather.model.Weather;
+import weather.model.WeatherList;
 
 import java.time.LocalDate;
 
 public class OpenWeatherMapClient implements WeatherClient {
 
-    private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/";
-    private static final String UNITS = "metric";
+    private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/forecast?q={city}&appid=";
+    private static final String UNITS = "&units=metric";
     private static String iconURL = "http://openweathermap.org/img/wn/";
     private RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplateWeatherForecast = new RestTemplate();
 
     @Override
     public Weather getWeather(String cityName) {
         String response = null;
 
         try {
-            response = restTemplate.getForObject(WEATHER_URL + "weather?q={city}&appid=" + Config.getAPIKey() + "&units=" + UNITS, String.class, cityName);
+            response = restTemplateWeatherForecast.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
+            System.out.println(response);
 
         }
         catch (Exception e){
@@ -29,13 +32,15 @@ public class OpenWeatherMapClient implements WeatherClient {
         Gson gson = new Gson();
         Weather weather = gson.fromJson(response, Weather.class);
 
-        double tempInCelsium = weather.getMain().getTemp();
-        int humidityInPercent = weather.getMain().getHumidity();
-        String description = weather.getWeather().get(0).getMain();
-        String iconNumber = weather.getWeather().get(0).getIcon();
+        double tempInCelsius = weather.getList().get(0).getMain().getTemp();
+        int humidityInPercent = (int) weather.getList().get(0).getMain().getHumidity();
+        String iconNumber = weather.getList().get(0).getWeather().get(0).getIcon();
+        String description = weather.getList().get(0).getWeather().get(0).getMain();
         String icon = iconURL + iconNumber + "@2x.png";
 
-        return new Weather(cityName, tempInCelsium, humidityInPercent, description, LocalDate.now(), icon);
-
+//        System.out.println(tempInCelsius);
+//        System.out.println(humidityInPercent);
+//        System.out.println(description);
+        return new Weather(cityName, tempInCelsius, humidityInPercent, description, LocalDate.now(), icon);
     }
 }
