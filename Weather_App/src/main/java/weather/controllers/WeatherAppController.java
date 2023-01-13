@@ -55,6 +55,10 @@ public class WeatherAppController implements Initializable {
         String cityName = locationInput.getText();;
         Weather weather = weatherService.getWeather(cityName);
         displayCurrentWeather(weather);
+        displayWeatherForecastDayAfter(weather);
+        displayWeatherForecastTwoDaysAfter(weather);
+        displayWeatherForecastThreeDaysAfter(weather);
+        displayWeatherForecastFourDaysAfter(weather);
     }
 
     private void displayCurrentWeather(Weather weather) {
@@ -65,16 +69,20 @@ public class WeatherAppController implements Initializable {
         displayHumidity.setText("" + weather.getHumidity() + " %");
         displayDescription.setText("" + weather.getDescription());
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
+    }
+
+    private void displayWeatherForecastDayAfter(Weather weather){
         firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
+    }
+    private void displayWeatherForecastTwoDaysAfter(Weather weather){
         secondDate.setText(String.valueOf(LocalDate.now().plusDays(2)));
+    }
+    private void displayWeatherForecastThreeDaysAfter(Weather weather){
         thirdDate.setText(String.valueOf(LocalDate.now().plusDays(3)));
+    }
+    private void displayWeatherForecastFourDaysAfter(Weather weather){
         fourtDate.setText(String.valueOf(LocalDate.now().plusDays(4)));
     }
-
-    private void displayWeatherForecast(Weather weather){
-        temperatureOne.setText("" + weather.getList().get(0).getMain().getTemp());
-    }
-
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
     }
