@@ -1,26 +1,17 @@
 package weather.model;
 
-import javafx.scene.image.Image;
-
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
 
 public class Weather {
-
-    public List<WeatherList> getList() {
-        return list;
-    }
-    List<WeatherList>list;
 
     private final String name;
     private final double temp;
     private final int humidity;
     private final String description;
-    private final LocalDate date;
+    private final String date;
     private final String icon;
 
-    public Weather(String cityName, double tempInCelsius, int humidityInPercent, String descriptionWeather, LocalDate date, String icon) {
+    public Weather(String cityName, double tempInCelsius, int humidityInPercent, String descriptionWeather, String date, String icon) {
         this.name = cityName;
         this.temp = tempInCelsius;
         this.humidity = humidityInPercent;
@@ -41,7 +32,7 @@ public class Weather {
     public String getDescription() {
         return description;
     }
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
     public String getIcon() {
