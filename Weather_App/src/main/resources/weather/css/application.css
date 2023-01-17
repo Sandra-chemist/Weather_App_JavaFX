@@ -1,9 +1,18 @@
 #mainStackPane{
-    -fx-background-color: "#184e77";
+    -fx-background-color: "a3cef1";
+    -fx-border-color: "0e6ba8";
 }
 
+#currentWeatherPane,
+#firstPanel,
+#secondPanel,
+#thirdPanel,
+#fourthPanel{
+   -fx-border-color: "0e6ba8";
+   -fx-border-radius: 25px;
+}
 .label{
-     -fx-text-fill: white;
+     -fx-text-fill: "274c77";
 }
 
 #titleApp{
