@@ -22,6 +22,7 @@ public class ViewFactory {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Weather application");
+        stage.setResizable(false);
         stage.show();
     }
 
