@@ -17,7 +17,7 @@ public class ViewFactory {
     private void initializeStage(MainPaneController mainPaneController) throws IOException {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/weather/MainScreen.fxml"));
         StackPane stackPane = loader.load();
-        Scene scene = new Scene(stackPane, 800, 500);
+        Scene scene = new Scene(stackPane, 800, 547);
         scene.getStylesheets().add(getClass().getResource("/weather/css/application.css").toExternalForm());
         Stage stage = new Stage();
         stage.setScene(scene);
