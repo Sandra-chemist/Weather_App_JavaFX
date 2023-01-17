@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import weather.model.Weather;
+import weather.model.WeatherForecast;
 import weather.model.WeatherService;
 import weather.model.WeatherServiceFactory;
 
@@ -54,8 +55,9 @@ public class WeatherAppController implements Initializable {
     void displayWeather() {
         String cityName = locationInput.getText();;
         Weather weather = weatherService.getWeather(cityName);
+        WeatherForecast weatherForecast = weatherService.getWeatherForecast(cityName);
         displayCurrentWeather(weather);
-        displayWeatherForecastDayAfter(weather);
+        displayWeatherForecastDayAfter(weatherForecast);
         displayWeatherForecastTwoDaysAfter(weather);
         displayWeatherForecastThreeDaysAfter(weather);
         displayWeatherForecastFourDaysAfter(weather);
@@ -71,7 +73,7 @@ public class WeatherAppController implements Initializable {
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
     }
 
-    private void displayWeatherForecastDayAfter(Weather weather){
+    private void displayWeatherForecastDayAfter(WeatherForecast weatherForecast){
         firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
     }
     private void displayWeatherForecastTwoDaysAfter(Weather weather){

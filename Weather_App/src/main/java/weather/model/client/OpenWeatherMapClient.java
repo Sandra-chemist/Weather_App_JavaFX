@@ -6,6 +6,7 @@ import org.springframework.web.client.RestTemplate;
 import weather.config.Config;
 
 import weather.model.Weather;
+import weather.model.WeatherForecast;
 
 public class OpenWeatherMapClient implements WeatherClient {
 
@@ -42,5 +43,9 @@ public class OpenWeatherMapClient implements WeatherClient {
 //        System.out.println(description);
 //        System.out.println(iconNumber);
         return new Weather(cityName, tempInCelsius, humidityInPercent, description, date, icon);
+    }
+
+    public WeatherForecast getWeatherForecast(String cityName){
+        return new WeatherForecast(cityName, "ddds", 5, "ds");
     }
 }
