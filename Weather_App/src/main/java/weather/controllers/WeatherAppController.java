@@ -18,11 +18,11 @@ public class WeatherAppController implements Initializable {
     @FXML
     private Label firstDate;
     @FXML
-    private Label fourthDate;
-    @FXML
     private Label secondDate;
     @FXML
     private Label thirdDate;
+    @FXML
+    private Label fourthDate;
     @FXML
     private ImageView weatherIcon;
     private MainScreenController mainScreenController;

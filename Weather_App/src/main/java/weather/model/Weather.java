@@ -3,7 +3,6 @@ package weather.model;
 import java.time.LocalDate;
 
 public class Weather {
-
     private final String name;
     private final double temp;
     private final int humidity;

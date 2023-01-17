@@ -57,18 +57,11 @@ public class OpenWeatherMapClient implements WeatherClient {
         JsonObject thirdDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(24).getAsJsonObject();
         JsonObject fourthDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(32).getAsJsonObject();
 
-
         double firstTempInCelsius = firstDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
         String firstDescription = firstDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
         String firstIconNumber = firstDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
         String firstIcon = iconURL + firstIconNumber + "@2x.png";
         String firstDate = firstDayWeatherForecast.get("dt_txt").getAsString();
-
-        System.out.println(firstDate);
-        System.out.println(firstDescription);
-        System.out.println(firstTempInCelsius);
-        System.out.println(firstIconNumber);
-        System.out.println("");
 
         double secondTempCelsius = secondDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
         String secondDescription = secondDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
@@ -76,23 +69,11 @@ public class OpenWeatherMapClient implements WeatherClient {
         String secondIcon = iconURL + secondIconNumber + "@2x.png";
         String secondDate = secondDayWeatherForecast.get("dt_txt").getAsString();
 
-        System.out.println(secondDate);
-        System.out.println(secondDescription);
-        System.out.println(secondTempCelsius);
-        System.out.println(secondIconNumber);
-        System.out.println("");
-
         double thirdTempCelsius = thirdDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
         String thirdDescription = thirdDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
         String thirdIconNumber = thirdDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
         String thirdIcon = iconURL + thirdIconNumber + "@2x.png";
         String thirdDate = thirdDayWeatherForecast.get("dt_txt").getAsString();
-
-        System.out.println(thirdDate);
-        System.out.println(thirdDescription);
-        System.out.println(thirdTempCelsius);
-        System.out.println(thirdIconNumber);
-        System.out.println("");
 
         double fourthTempCelsius = firstDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
         String fourthDescription = fourthDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
@@ -100,27 +81,13 @@ public class OpenWeatherMapClient implements WeatherClient {
         String fourthIcon = iconURL + fourthIconNumber + "@2x.png";
         String fourthDate = fourthDayWeatherForecast.get("dt_txt").getAsString();
 
-        System.out.println(fourthDate);
-        System.out.println(fourthDescription);
-        System.out.println(fourthTempCelsius);
-        System.out.println(fourthIconNumber);
-
         List<ForecastData> weatherForecasts = new ArrayList<ForecastData>();
         weatherForecasts.add(new ForecastData(firstDescription, firstTempInCelsius, firstIcon));
         weatherForecasts.add(new ForecastData(secondDescription, secondTempCelsius, secondIcon));
         weatherForecasts.add(new ForecastData(thirdDescription, thirdTempCelsius, thirdIcon));
         weatherForecasts.add(new ForecastData(fourthDescription, fourthTempCelsius, fourthIcon));
-        System.out.println("indeks 0");
-        System.out.println(weatherForecasts.get(0).getDescription());
-        System.out.println("indeks 1");
-        System.out.println(weatherForecasts.get(1).getDescription());
-        System.out.println("indeks 2");
-        System.out.println(weatherForecasts.get(2).getDescription());
-        System.out.println("indeks 3");
-        System.out.println(weatherForecasts.get(3).getDescription());
 
         return weatherForecasts;
     }
-
 
 }
