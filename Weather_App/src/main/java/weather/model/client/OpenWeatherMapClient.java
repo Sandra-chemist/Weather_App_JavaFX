@@ -7,13 +7,11 @@ import weather.config.Config;
 
 import weather.model.Weather;
 
-import java.time.LocalDate;
-
 public class OpenWeatherMapClient implements WeatherClient {
 
     private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/forecast?q={city}&appid=";
     private static final String UNITS = "&units=metric";
-    private static String iconURL = "http://openweathermap.org/img/wn/";
+    private static final String iconURL = "http://openweathermap.org/img/wn/";
     private RestTemplate restTemplate = new RestTemplate();
 
     @Override
