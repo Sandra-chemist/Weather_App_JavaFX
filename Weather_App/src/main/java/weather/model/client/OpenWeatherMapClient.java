@@ -6,8 +6,8 @@ import org.jetbrains.annotations.Nullable;
 import org.springframework.web.client.RestTemplate;
 import weather.config.Config;
 
+import weather.model.ForecastData;
 import weather.model.Weather;
-import weather.model.WeatherForecast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,20 @@ public class OpenWeatherMapClient implements WeatherClient {
     private static final String UNITS = "&units=metric";
     private static final String iconURL = "http://openweathermap.org/img/wn/";
     private RestTemplate restTemplate = new RestTemplate();
+
+    @Nullable
+    private String getResponse(String cityName) {
+        String response = null;
+
+        try {
+            response = restTemplate.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
+        }
+        catch (Exception e){
+            System.out.println("City not found");
+        }
+        return response;
+    }
+
 
     @Override
     public Weather getWeather(String cityName) {
@@ -35,7 +49,7 @@ public class OpenWeatherMapClient implements WeatherClient {
         return new Weather(cityName, tempInCelsius, humidityInPercent, description, date, icon);
     }
 
-    public WeatherForecast getWeatherForecast(String cityName){
+    public List<ForecastData> getWeatherForecast(String cityName){
         String response = getResponse(cityName);
         Gson gson = new Gson();
         JsonObject firstDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(8).getAsJsonObject();
@@ -91,30 +105,18 @@ public class OpenWeatherMapClient implements WeatherClient {
         System.out.println(fourthTempCelsius);
         System.out.println(fourthIconNumber);
 
-        List<WeatherForecast> weatherForecasts = new ArrayList<WeatherForecast>();
-        weatherForecasts.add(new WeatherForecast(firstDescription, firstTempInCelsius, firstIcon));
-        weatherForecasts.add(new WeatherForecast(secondDescription, secondTempCelsius, secondIcon));
-        weatherForecasts.add(new WeatherForecast(thirdDescription, thirdTempCelsius, thirdIcon));
-        weatherForecasts.add(new WeatherForecast(fourthDescription, fourthTempCelsius, fourthIcon));
+        List<ForecastData> weatherForecasts = new ArrayList<ForecastData>();
+        weatherForecasts.add(new ForecastData(firstDescription, firstTempInCelsius, firstIcon));
+        weatherForecasts.add(new ForecastData(secondDescription, secondTempCelsius, secondIcon));
+        weatherForecasts.add(new ForecastData(thirdDescription, thirdTempCelsius, thirdIcon));
+        weatherForecasts.add(new ForecastData(fourthDescription, fourthTempCelsius, fourthIcon));
         System.out.println("indeks 0");
         System.out.println(weatherForecasts.get(0).getDescription());
         System.out.println("indeks 1");
         System.out.println(weatherForecasts.get(1).getDescription());
 
-        return new WeatherForecast(firstDescription, firstTempInCelsius, firstIcon);
+        return weatherForecasts;
     }
 
-    @Nullable
-    private String getResponse(String cityName) {
-        String response = null;
-
-        try {
-            response = restTemplate.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
-        }
-        catch (Exception e){
-            System.out.println("City not found");
-        }
-        return response;
-    }
 
 }

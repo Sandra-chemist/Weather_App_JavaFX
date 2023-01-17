@@ -6,17 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import weather.model.Weather;
-import weather.model.WeatherForecast;
-import weather.model.WeatherService;
-import weather.model.WeatherServiceFactory;
+import weather.model.*;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class WeatherAppController implements Initializable {
 
@@ -60,9 +55,9 @@ public class WeatherAppController implements Initializable {
     void displayWeather() {
         String cityName = locationInput.getText();;
         Weather weather = weatherService.getWeather(cityName);
-        WeatherForecast weatherForecast = weatherService.getWeatherForecast(cityName);
+        List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
         displayCurrentWeather(weather);
-        displayWeatherForecastDayAfter(weatherForecast);
+        displayWeatherForecastDayAfter((ArrayList<ForecastData>) forecastData);
 //        displayWeatherForecastTwoDaysAfter(weather);
 //        displayWeatherForecastThreeDaysAfter(weather);
 //        displayWeatherForecastFourDaysAfter(weather);
@@ -78,11 +73,11 @@ public class WeatherAppController implements Initializable {
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
     }
 
-    private void displayWeatherForecastDayAfter(WeatherForecast weatherForecast){
+    private void displayWeatherForecastDayAfter(ArrayList<ForecastData> forecastData){
         firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
-        firstTemp.setText("" + weatherForecast.getTemp() + " \u00b0C");
-        firstDescription.setText("" + weatherForecast.getDescription());
-        firstIcon.setImage(new Image(String.valueOf(weatherForecast.getIcon())));
+        firstTemp.setText("" +  forecastData.get(0).getTemp() + " \u00b0C");
+        firstDescription.setText("" + forecastData.get(0).getDescription());
+        firstIcon.setImage(new Image(String.valueOf(forecastData.get(0).getIcon())));
     }
     private void displayWeatherForecastTwoDaysAfter(Weather weather){
         secondDate.setText(String.valueOf(LocalDate.now().plusDays(2)));

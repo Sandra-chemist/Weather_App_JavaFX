@@ -1,9 +1,11 @@
 package weather.model.client;
 
+import weather.model.ForecastData;
 import weather.model.Weather;
-import weather.model.WeatherForecast;
+
+import java.util.List;
 
 public interface WeatherClient {
     Weather getWeather(String cityName);
-    WeatherForecast getWeatherForecast(String cityName);
+    List<ForecastData> getWeatherForecast(String cityName);
 }

@@ -1,27 +1,12 @@
 package weather.model;
 
+import java.util.ArrayList;
+
 public class WeatherForecast {
 
-    private final String description;
-    private final double temp;
-    private final String icon;
-
-    public WeatherForecast(String description, double temp, String icon) {
-        this.description = description;
-        this.temp = temp;
-        this.icon = icon;
+    public WeatherForecast(ArrayList<ForecastData> forecastData) {
+        this.forecastData = forecastData;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public double getTemp() {
-        return temp;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
+    private ArrayList<ForecastData> forecastData;
 }

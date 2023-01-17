@@ -2,6 +2,8 @@ package weather.model;
 
 import weather.model.client.WeatherClient;
 
+import java.util.List;
+
 public class WeatherService {
 
    private final WeatherClient weatherClient;
@@ -14,7 +16,7 @@ public class WeatherService {
         return weatherClient.getWeather(cityName);
     }
 
-    public WeatherForecast getWeatherForecast(String cityName){
+    public List<ForecastData> getWeatherForecast(String cityName){
         return weatherClient.getWeatherForecast(cityName);
     }
 }
