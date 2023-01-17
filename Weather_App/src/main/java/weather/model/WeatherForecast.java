@@ -2,20 +2,14 @@ package weather.model;
 
 public class WeatherForecast {
 
-    private final String name;
     private final String description;
     private final double temp;
     private final String icon;
 
-    public WeatherForecast(String name, String description, double temp, String icon) {
-        this.name = name;
+    public WeatherForecast(String description, double temp, String icon) {
         this.description = description;
         this.temp = temp;
         this.icon = icon;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public String getDescription() {

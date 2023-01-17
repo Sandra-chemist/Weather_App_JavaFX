@@ -46,7 +46,7 @@ public class OpenWeatherMapClient implements WeatherClient {
         iconNumber = weatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
         icon = iconURL + iconNumber + "@2x.png";
 
-        return new WeatherForecast(cityName, description, tempInCelsius, icon);
+        return new WeatherForecast(description, tempInCelsius, icon);
     }
 
     @Nullable
