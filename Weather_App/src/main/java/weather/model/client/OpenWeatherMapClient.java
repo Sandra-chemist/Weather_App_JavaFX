@@ -114,6 +114,10 @@ public class OpenWeatherMapClient implements WeatherClient {
         System.out.println(weatherForecasts.get(0).getDescription());
         System.out.println("indeks 1");
         System.out.println(weatherForecasts.get(1).getDescription());
+        System.out.println("indeks 2");
+        System.out.println(weatherForecasts.get(2).getDescription());
+        System.out.println("indeks 3");
+        System.out.println(weatherForecasts.get(3).getDescription());
 
         return weatherForecasts;
     }

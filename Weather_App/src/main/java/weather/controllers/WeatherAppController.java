@@ -18,7 +18,7 @@ public class WeatherAppController implements Initializable {
     @FXML
     private Label firstDate;
     @FXML
-    private Label fourtDate;
+    private Label fourthDate;
     @FXML
     private Label secondDate;
     @FXML
@@ -43,9 +43,26 @@ public class WeatherAppController implements Initializable {
     private Label firstDescription;
     @FXML
     private ImageView firstIcon;
-
     @FXML
     private Label firstTemp;
+    @FXML
+    private Label secondDescription;
+    @FXML
+    private Label secondTemp;
+    @FXML
+    private ImageView secondIcon;
+    @FXML
+    private Label thirdDescription;
+    @FXML
+    private Label thirdTemp;
+    @FXML
+    private ImageView thirdIcon;
+    @FXML
+    private Label fourthDescription;
+    @FXML
+    private Label fourthTemp;
+    @FXML
+    private ImageView fourthIcon;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,9 +75,9 @@ public class WeatherAppController implements Initializable {
         List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
         displayCurrentWeather(weather);
         displayWeatherForecastDayAfter((ArrayList<ForecastData>) forecastData);
-//        displayWeatherForecastTwoDaysAfter(weather);
-//        displayWeatherForecastThreeDaysAfter(weather);
-//        displayWeatherForecastFourDaysAfter(weather);
+        displayWeatherForecastTwoDaysAfter((ArrayList<ForecastData>) forecastData);
+        displayWeatherForecastThreeDaysAfter((ArrayList<ForecastData>) forecastData);
+        displayWeatherForecastFourDaysAfter((ArrayList<ForecastData>) forecastData);
     }
 
     private void displayCurrentWeather(Weather weather) {
@@ -79,14 +96,23 @@ public class WeatherAppController implements Initializable {
         firstDescription.setText("" + forecastData.get(0).getDescription());
         firstIcon.setImage(new Image(String.valueOf(forecastData.get(0).getIcon())));
     }
-    private void displayWeatherForecastTwoDaysAfter(Weather weather){
+    private void displayWeatherForecastTwoDaysAfter(ArrayList<ForecastData> forecastData){
         secondDate.setText(String.valueOf(LocalDate.now().plusDays(2)));
+        secondTemp.setText("" +  forecastData.get(1).getTemp() + " \u00b0C");
+        secondDescription.setText("" + forecastData.get(1).getDescription());
+        secondIcon.setImage(new Image(String.valueOf(forecastData.get(1).getIcon())));
     }
-    private void displayWeatherForecastThreeDaysAfter(Weather weather){
+    private void displayWeatherForecastThreeDaysAfter(ArrayList<ForecastData> forecastData){
         thirdDate.setText(String.valueOf(LocalDate.now().plusDays(3)));
+        thirdTemp.setText("" +  forecastData.get(2).getTemp() + " \u00b0C");
+        thirdDescription.setText("" + forecastData.get(2).getDescription());
+        thirdIcon.setImage(new Image(String.valueOf(forecastData.get(2).getIcon())));
     }
-    private void displayWeatherForecastFourDaysAfter(Weather weather){
-        fourtDate.setText(String.valueOf(LocalDate.now().plusDays(4)));
+    private void displayWeatherForecastFourDaysAfter(ArrayList<ForecastData> forecastData){
+        fourthDate.setText(String.valueOf(LocalDate.now().plusDays(4)));
+        fourthTemp.setText("" +  forecastData.get(3).getTemp() + " \u00b0C");
+        fourthDescription.setText("" + forecastData.get(3).getDescription());
+        fourthIcon.setImage(new Image(String.valueOf(forecastData.get(3).getIcon())));
     }
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
