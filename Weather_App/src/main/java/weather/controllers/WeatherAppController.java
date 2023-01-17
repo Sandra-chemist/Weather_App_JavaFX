@@ -45,7 +45,12 @@ public class WeatherAppController implements Initializable {
     @FXML
     private TextField locationInput;
     @FXML
-    private Label firstWeather;
+    private Label firstDescription;
+    @FXML
+    private ImageView firstIcon;
+
+    @FXML
+    private Label firstTemp;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -58,9 +63,9 @@ public class WeatherAppController implements Initializable {
         WeatherForecast weatherForecast = weatherService.getWeatherForecast(cityName);
         displayCurrentWeather(weather);
         displayWeatherForecastDayAfter(weatherForecast);
-        displayWeatherForecastTwoDaysAfter(weather);
-        displayWeatherForecastThreeDaysAfter(weather);
-        displayWeatherForecastFourDaysAfter(weather);
+//        displayWeatherForecastTwoDaysAfter(weather);
+//        displayWeatherForecastThreeDaysAfter(weather);
+//        displayWeatherForecastFourDaysAfter(weather);
     }
 
     private void displayCurrentWeather(Weather weather) {
@@ -75,6 +80,9 @@ public class WeatherAppController implements Initializable {
 
     private void displayWeatherForecastDayAfter(WeatherForecast weatherForecast){
         firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
+        firstTemp.setText("" + weatherForecast.getTemp() + " \u00b0C");
+        firstDescription.setText("" + weatherForecast.getDescription());
+        firstIcon.setImage(new Image(String.valueOf(weatherForecast.getIcon())));
     }
     private void displayWeatherForecastTwoDaysAfter(Weather weather){
         secondDate.setText(String.valueOf(LocalDate.now().plusDays(2)));

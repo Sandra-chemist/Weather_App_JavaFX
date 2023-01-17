@@ -15,6 +15,10 @@ public class OpenWeatherMapClient implements WeatherClient {
     private static final String UNITS = "&units=metric";
     private static final String iconURL = "http://openweathermap.org/img/wn/";
     private RestTemplate restTemplate = new RestTemplate();
+    double tempInCelsius;
+    String description;
+    String iconNumber;
+    String icon;
 
     @Override
     public Weather getWeather(String cityName) {
@@ -22,19 +26,27 @@ public class OpenWeatherMapClient implements WeatherClient {
         Gson gson = new Gson();
         JsonObject weather = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(0).getAsJsonObject();
 
-        double tempInCelsius = weather.getAsJsonObject("main").get("temp").getAsDouble();
+        tempInCelsius = weather.getAsJsonObject("main").get("temp").getAsDouble();
         int humidityInPercent = weather.getAsJsonObject("main").get("humidity").getAsInt();
-        String description = weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
-        String iconNumber = weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
-        String icon = iconURL + iconNumber + "@2x.png";
+        description = weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
+        iconNumber = weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
+        icon = iconURL + iconNumber + "@2x.png";
         String date = weather.get("dt_txt").getAsString();
 
-//        System.out.println(date);
-//        System.out.println(tempInCelsius);
-//        System.out.println(humidityInPercent);
-//        System.out.println(description);
-//        System.out.println(iconNumber);
         return new Weather(cityName, tempInCelsius, humidityInPercent, description, date, icon);
+    }
+
+    public WeatherForecast getWeatherForecast(String cityName){
+        String response = getResponse(cityName);
+        Gson gson = new Gson();
+        JsonObject weatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(8).getAsJsonObject();
+
+        tempInCelsius = weatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
+        description = weatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
+        iconNumber = weatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
+        icon = iconURL + iconNumber + "@2x.png";
+
+        return new WeatherForecast(cityName, description, tempInCelsius, icon);
     }
 
     @Nullable
@@ -52,7 +64,4 @@ public class OpenWeatherMapClient implements WeatherClient {
         return response;
     }
 
-    public WeatherForecast getWeatherForecast(String cityName){
-        return new WeatherForecast(cityName, "ddds", 5, "ds");
-    }
 }
