@@ -2,6 +2,7 @@ package weather.model.client;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import org.jetbrains.annotations.Nullable;
 import org.springframework.web.client.RestTemplate;
 import weather.config.Config;
 
@@ -17,16 +18,7 @@ public class OpenWeatherMapClient implements WeatherClient {
 
     @Override
     public Weather getWeather(String cityName) {
-        String response = null;
-
-        try {
-            response = restTemplate.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
-            System.out.println(response);
-
-        }
-        catch (Exception e){
-            System.out.println("City not found");
-        }
+        String response = getResponse(cityName);
         Gson gson = new Gson();
         JsonObject weather = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(0).getAsJsonObject();
 
@@ -43,6 +35,21 @@ public class OpenWeatherMapClient implements WeatherClient {
 //        System.out.println(description);
 //        System.out.println(iconNumber);
         return new Weather(cityName, tempInCelsius, humidityInPercent, description, date, icon);
+    }
+
+    @Nullable
+    private String getResponse(String cityName) {
+        String response = null;
+
+        try {
+            response = restTemplate.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
+            System.out.println(response);
+
+        }
+        catch (Exception e){
+            System.out.println("City not found");
+        }
+        return response;
     }
 
     public WeatherForecast getWeatherForecast(String cityName){
