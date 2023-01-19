@@ -52,18 +52,16 @@ public class WeatherAppController implements Initializable {
     private ImageView secondIcon, secondIconInRightPanel;
 
     @FXML
-    private Label thirdDate;
+    private Label thirdDate, thirdDateInRightPanel;
+    @FXML
+    private Label thirdDescription, thirdDescriptionInRightPanel;
+    @FXML
+    private Label thirdTemp, thirdTempInRightPanel;
+    @FXML
+    private ImageView thirdIcon, thirdIconInRightPanel;
+
     @FXML
     private Label fourthDate;
-
-
-
-    @FXML
-    private Label thirdDescription;
-    @FXML
-    private Label thirdTemp;
-    @FXML
-    private ImageView thirdIcon;
     @FXML
     private Label fourthDescription;
     @FXML
@@ -130,6 +128,7 @@ public class WeatherAppController implements Initializable {
         displayCurrentWeatherInRightPanel(weather);
         displayWeatherForecastDayAfterInRightPanel((ArrayList<ForecastData>) forecastData);
         displayWeatherForecastTwoDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+        displayWeatherForecastThreeDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
     }
     private void displayCurrentWeatherInRightPanel(Weather weather) {
         String location = secondLocationInput.getText();
@@ -151,6 +150,12 @@ public class WeatherAppController implements Initializable {
         secondTempInRightPanel.setText("" +  forecastData.get(1).getTemp() + " \u00b0C");
         secondDescriptionInRightPanel.setText("" + forecastData.get(1).getDescription());
         secondIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(1).getIcon())));
+    }
+    private void displayWeatherForecastThreeDaysAfterInRightPanel(ArrayList<ForecastData> forecastData){
+        thirdDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(3)));
+        thirdTempInRightPanel.setText("" +  forecastData.get(2).getTemp() + " \u00b0C");
+        thirdDescriptionInRightPanel.setText("" + forecastData.get(2).getDescription());
+        thirdIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(2).getIcon())));
     }
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
