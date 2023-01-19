@@ -20,10 +20,8 @@ public class MainPaneController {
         WeatherAppController weatherAppController = loader.getController();
         weatherAppController.setMainScreenController(mainScreenController);
         mainScreenController.setScreen(pane);
-
     }
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
     }
-
 }

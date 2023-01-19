@@ -9,14 +9,12 @@ import javafx.scene.image.ImageView;
 import weather.model.*;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
 public class WeatherAppController implements Initializable {
     private MainScreenController mainScreenController;
     private WeatherService weatherService;
-
     @FXML
     private Label firstError, secondError;
 
@@ -76,7 +74,6 @@ public class WeatherAppController implements Initializable {
         weatherService = WeatherServiceFactory.createWeatherService();
     }
 
-
     @FXML
     void displayWeather() {
         try {
@@ -115,7 +112,7 @@ public class WeatherAppController implements Initializable {
         String location = locationInput.getText();
         currDate.setText("" + weather.getDate());
         displayCity.setText(location.toUpperCase());
-        displayTemperature.setText("" + weather.getTemp() + " \u00b0C");
+        displayTemperature.setText("" + weather.getTemp() + " °C");
         displayHumidity.setText("" + weather.getHumidity() + " %");
         displayDescription.setText("" + weather.getDescription());
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
@@ -123,25 +120,25 @@ public class WeatherAppController implements Initializable {
     }
     private void displayWeatherForecastDayAfter(ArrayList<ForecastData> forecastData){
         firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
-        firstTemp.setText("" +  forecastData.get(0).getTemp() + " \u00b0C");
+        firstTemp.setText("" +  forecastData.get(0).getTemp() + " °C");
         firstDescription.setText("" + forecastData.get(0).getDescription());
         firstIcon.setImage(new Image(String.valueOf(forecastData.get(0).getIcon())));
     }
     private void displayWeatherForecastTwoDaysAfter(ArrayList<ForecastData> forecastData){
         secondDate.setText(String.valueOf(LocalDate.now().plusDays(2)));
-        secondTemp.setText("" +  forecastData.get(1).getTemp() + " \u00b0C");
+        secondTemp.setText("" +  forecastData.get(1).getTemp() + " °C");
         secondDescription.setText("" + forecastData.get(1).getDescription());
         secondIcon.setImage(new Image(String.valueOf(forecastData.get(1).getIcon())));
     }
     private void displayWeatherForecastThreeDaysAfter(ArrayList<ForecastData> forecastData){
         thirdDate.setText(String.valueOf(LocalDate.now().plusDays(3)));
-        thirdTemp.setText("" +  forecastData.get(2).getTemp() + " \u00b0C");
+        thirdTemp.setText("" +  forecastData.get(2).getTemp() + " °C");
         thirdDescription.setText("" + forecastData.get(2).getDescription());
         thirdIcon.setImage(new Image(String.valueOf(forecastData.get(2).getIcon())));
     }
     private void displayWeatherForecastFourDaysAfter(ArrayList<ForecastData> forecastData){
         fourthDate.setText(String.valueOf(LocalDate.now().plusDays(4)));
-        fourthTemp.setText("" +  forecastData.get(3).getTemp() + " \u00b0C");
+        fourthTemp.setText("" +  forecastData.get(3).getTemp() + " °C");
         fourthDescription.setText("" + forecastData.get(3).getDescription());
         fourthIcon.setImage(new Image(String.valueOf(forecastData.get(3).getIcon())));
     }
@@ -184,7 +181,7 @@ public class WeatherAppController implements Initializable {
         String location = secondLocationInput.getText();
         currDateInRightPanel.setText("" + weather.getDate());
         displayCityInRightPanel.setText(location.toUpperCase());
-        displayTemperatureInRightPanel.setText("" + weather.getTemp() + " \u00b0C");
+        displayTemperatureInRightPanel.setText("" + weather.getTemp() + " °C");
         displayHumidityInRightPanel.setText("" + weather.getHumidity() + " %");
         displayDescriptionInRightPanel.setText("" + weather.getDescription());
         weatherIconInRightPanel.setImage(new Image(String.valueOf(weather.getIcon())));
@@ -192,25 +189,25 @@ public class WeatherAppController implements Initializable {
     }
     private void displayWeatherForecastDayAfterInRightPanel(ArrayList<ForecastData> forecastData){
         firstDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(1)));
-        firstTempInRightPanel.setText("" +  forecastData.get(0).getTemp() + " \u00b0C");
+        firstTempInRightPanel.setText("" +  forecastData.get(0).getTemp() + " °C");
         firstDescriptionInRightPanel.setText("" + forecastData.get(0).getDescription());
         firstIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(0).getIcon())));
     }
     private void displayWeatherForecastTwoDaysAfterInRightPanel(ArrayList<ForecastData> forecastData){
         secondDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(2)));
-        secondTempInRightPanel.setText("" +  forecastData.get(1).getTemp() + " \u00b0C");
+        secondTempInRightPanel.setText("" +  forecastData.get(1).getTemp() + " °C");
         secondDescriptionInRightPanel.setText("" + forecastData.get(1).getDescription());
         secondIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(1).getIcon())));
     }
     private void displayWeatherForecastThreeDaysAfterInRightPanel(ArrayList<ForecastData> forecastData){
         thirdDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(3)));
-        thirdTempInRightPanel.setText("" +  forecastData.get(2).getTemp() + " \u00b0C");
+        thirdTempInRightPanel.setText("" +  forecastData.get(2).getTemp() + " °C");
         thirdDescriptionInRightPanel.setText("" + forecastData.get(2).getDescription());
         thirdIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(2).getIcon())));
     }
     private void displayWeatherForecastFourDaysAfterInRightPanel(ArrayList<ForecastData> forecastData){
         fourthDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(4)));
-        fourthTempInRightPanel.setText("" +  forecastData.get(3).getTemp() + " \u00b0C");
+        fourthTempInRightPanel.setText("" +  forecastData.get(3).getTemp() + " °C");
         fourthDescriptionInRightPanel.setText("" + forecastData.get(3).getDescription());
         fourthIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(3).getIcon())));
     }

@@ -32,7 +32,6 @@ public class OpenWeatherMapClient implements WeatherClient {
         return response;
     }
 
-
     @Override
     public Weather getWeather(String cityName) {
         String response = getResponse(cityName);
@@ -89,5 +88,4 @@ public class OpenWeatherMapClient implements WeatherClient {
 
         return weatherForecasts;
     }
-
 }

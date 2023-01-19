@@ -6,7 +6,7 @@ import java.util.List;
 
 public class WeatherService {
 
-   private final WeatherClient weatherClient;
+    private final WeatherClient weatherClient;
     public WeatherService(WeatherClient weatherClient) {
         this.weatherClient = weatherClient;
     }

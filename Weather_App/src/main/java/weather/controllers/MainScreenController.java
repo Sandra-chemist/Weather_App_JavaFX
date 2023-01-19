@@ -10,7 +10,6 @@ import java.io.IOException;
 public class MainScreenController {
     @FXML
     private StackPane mainStackPane;
-
     @FXML
     public void initialize(){
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/weather/MainPane.fxml"));
@@ -24,7 +23,6 @@ public class MainScreenController {
         mainPaneController.setMainScreenController(this);
         setScreen(pane);
     }
-
     public void setScreen(Pane pane) {
         mainStackPane.getChildren().clear();
         mainStackPane.getChildren().add(pane);
