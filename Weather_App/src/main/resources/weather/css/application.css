@@ -23,3 +23,16 @@
 #titleApp{
     -fx-font-weight: bold;
 }
+
+#firstError,
+#secondError{
+    -fx-text-fill: red;
+}
+
+#buttonDisplayWeather,
+#secondButtonDisplayWeather,
+#buttonGo{
+    -fx-border-color: "0e6ba8";
+    -fx-background-color: "0077b6";
+    -fx-text-fill: white;
+}

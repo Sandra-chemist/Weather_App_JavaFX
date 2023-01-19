@@ -18,6 +18,9 @@ public class WeatherAppController implements Initializable {
     private WeatherService weatherService;
 
     @FXML
+    private Label firstError, secondError;
+
+    @FXML
     private TextField locationInput, secondLocationInput;
     @FXML
     private Label currDate,  currDateInRightPanel;
@@ -40,7 +43,6 @@ public class WeatherAppController implements Initializable {
     private Label firstTemp, firstTempInRightPanel;
     @FXML
     private ImageView firstIcon,  firstIconInRightPanel;
-
 
     @FXML
     private Label secondDate, secondDateInRightPanel;
@@ -73,16 +75,41 @@ public class WeatherAppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         weatherService = WeatherServiceFactory.createWeatherService();
     }
+
+
     @FXML
     void displayWeather() {
-        String cityName = locationInput.getText();
-        Weather weather = weatherService.getWeather(cityName);
-        List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
-        displayCurrentWeather(weather);
-        displayWeatherForecastDayAfter((ArrayList<ForecastData>) forecastData);
-        displayWeatherForecastTwoDaysAfter((ArrayList<ForecastData>) forecastData);
-        displayWeatherForecastThreeDaysAfter((ArrayList<ForecastData>) forecastData);
-        displayWeatherForecastFourDaysAfter((ArrayList<ForecastData>) forecastData);
+        try {
+            firstError.setText("");
+            String cityName = locationInput.getText();
+            Weather weather = weatherService.getWeather(cityName);
+            List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
+            displayCurrentWeather(weather);
+            displayWeatherForecastDayAfter((ArrayList<ForecastData>) forecastData);
+            displayWeatherForecastTwoDaysAfter((ArrayList<ForecastData>) forecastData);
+            displayWeatherForecastThreeDaysAfter((ArrayList<ForecastData>) forecastData);
+            displayWeatherForecastFourDaysAfter((ArrayList<ForecastData>) forecastData);
+        } catch (Exception e){
+            firstError.setText("City not found!");
+            locationInput.setText("");
+            displayCity.setText("");
+            displayTemperature.setText("");
+            displayHumidity.setText("");
+            displayDescription.setText("");
+            weatherIcon.setImage(null);
+            firstDescription.setText("");
+            firstTemp.setText("");
+            firstIcon.setImage(null);
+            secondDescription.setText("");
+            secondTemp.setText("");
+            secondIcon.setImage(null);
+            thirdDescription.setText("");
+            thirdTemp.setText("");
+            thirdIcon.setImage(null);
+            fourthDescription.setText("");
+            fourthTemp.setText("");
+            fourthIcon.setImage(null);
+        }
     }
     private void displayCurrentWeather(Weather weather) {
         String location = locationInput.getText();
@@ -121,14 +148,37 @@ public class WeatherAppController implements Initializable {
 
     @FXML
     void secondButtonOfDisplayWeather() {
-        String cityName = secondLocationInput.getText();
-        Weather weather = weatherService.getWeather(cityName);
-        List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
-        displayCurrentWeatherInRightPanel(weather);
-        displayWeatherForecastDayAfterInRightPanel((ArrayList<ForecastData>) forecastData);
-        displayWeatherForecastTwoDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
-        displayWeatherForecastThreeDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
-        displayWeatherForecastFourDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+        try {
+            secondError.setText("");
+            String cityName = secondLocationInput.getText();
+            Weather weather = weatherService.getWeather(cityName);
+            List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
+            displayCurrentWeatherInRightPanel(weather);
+            displayWeatherForecastDayAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+            displayWeatherForecastTwoDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+            displayWeatherForecastThreeDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+            displayWeatherForecastFourDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+        } catch (Exception e) {
+            secondError.setText("City not found!");
+            secondLocationInput.setText("");
+            displayCityInRightPanel.setText("");
+            displayTemperatureInRightPanel.setText("");
+            displayHumidityInRightPanel.setText("");
+            displayDescriptionInRightPanel.setText("");
+            weatherIconInRightPanel.setImage(null);
+            firstDescriptionInRightPanel.setText("");
+            firstTempInRightPanel.setText("");
+            firstIconInRightPanel.setImage(null);
+            secondDescriptionInRightPanel.setText("");
+            secondTempInRightPanel.setText("");
+            secondIconInRightPanel.setImage(null);
+            thirdDescriptionInRightPanel.setText("");
+            thirdTempInRightPanel.setText("");
+            thirdIconInRightPanel.setImage(null);
+            fourthDescriptionInRightPanel.setText("");
+            fourthTempInRightPanel.setText("");
+            fourthIconInRightPanel.setImage(null);
+        }
     }
     private void displayCurrentWeatherInRightPanel(Weather weather) {
         String location = secondLocationInput.getText();
@@ -167,5 +217,4 @@ public class WeatherAppController implements Initializable {
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
     }
-
 }

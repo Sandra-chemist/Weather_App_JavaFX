@@ -89,7 +89,7 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="269.0" layoutY="49.0" mnemonicParsing="false" onAction="#displayWeather" prefHeight="25.0" prefWidth="107.0" text="Display Weather" />
+            <Button fx:id="buttonDisplayWeather" layoutX="269.0" layoutY="49.0" mnemonicParsing="false" onAction="#displayWeather" prefHeight="25.0" prefWidth="107.0" text="Display Weather" />
             <Pane fx:id="fourthPanel" layoutX="11.0" layoutY="479.0" prefHeight="44.0" prefWidth="373.0">
                <children>
                   <Label fx:id="fourthDate" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="15.0" prefHeight="17.0" prefWidth="122.0" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
@@ -188,7 +188,7 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Label>
-            <Button layoutX="269.0" layoutY="49.0" mnemonicParsing="false" onAction="#secondButtonOfDisplayWeather" prefHeight="25.0" prefWidth="107.0" text="Display Weather" />
+            <Button fx:id="secondButtonDisplayWeather" layoutX="269.0" layoutY="49.0" mnemonicParsing="false" onAction="#secondButtonOfDisplayWeather" prefHeight="25.0" prefWidth="107.0" text="Display Weather" />
             <Pane fx:id="fourthPanelInRightPanel" layoutX="11.0" layoutY="479.0" prefHeight="44.0" prefWidth="373.0">
                <children>
                   <Label fx:id="fourthDateInRightPanel" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="15.0" prefHeight="17.0" prefWidth="122.0" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
@@ -197,7 +197,15 @@
                   <ImageView fx:id="fourthIconInRightPanel" fitHeight="44.0" fitWidth="63.0" layoutX="311.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
+            <Label fx:id="secondError" alignment="CENTER" contentDisplay="CENTER" layoutX="6.0" prefHeight="17.0" prefWidth="383.0" textFill="RED">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
          </children>
       </Pane>
+      <Label fx:id="firstError" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="6.0" prefHeight="17.0" prefWidth="383.0" textFill="RED">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
    </children>
 </Pane>
