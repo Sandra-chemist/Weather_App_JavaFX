@@ -7,7 +7,12 @@
 #firstPanel,
 #secondPanel,
 #thirdPanel,
-#fourthPanel{
+#fourthPanel,
+#currentWeatherPaneInRightPanel,
+#firstPanelInRightPanel,
+#secondPanelInRightPanel,
+#thirdPanelInRightPanel,
+#fourthPanelInRightPanel{
    -fx-border-color: "0e6ba8";
    -fx-border-radius: 25px;
 }
