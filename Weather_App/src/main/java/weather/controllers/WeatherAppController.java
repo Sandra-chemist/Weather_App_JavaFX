@@ -14,7 +14,31 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class WeatherAppController implements Initializable {
+    private MainScreenController mainScreenController;
+    private WeatherService weatherService;
 
+    @FXML
+    private TextField locationInput, secondLocationInput;
+    @FXML
+    private Label currDate,  currDateInRightPanel;
+    @FXML
+    private Label displayCity, displayCityInRightPanel;
+    @FXML
+    private ImageView weatherIcon, weatherIconInRightPanel;
+    @FXML
+    private Label displayTemperature, displayTemperatureInRightPanel;
+    @FXML
+    private Label displayHumidity, displayHumidityInRightPanel;
+    @FXML
+    private Label displayDescription, displayDescriptionInRightPanel;
+
+
+    @FXML
+    private Label firstDescription;
+    @FXML
+    private ImageView firstIcon;
+    @FXML
+    private Label firstTemp;
     @FXML
     private Label firstDate;
     @FXML
@@ -23,28 +47,6 @@ public class WeatherAppController implements Initializable {
     private Label thirdDate;
     @FXML
     private Label fourthDate;
-    @FXML
-    private ImageView weatherIcon;
-    private MainScreenController mainScreenController;
-    private WeatherService weatherService;
-    @FXML
-    private Label displayTemperature;
-    @FXML
-    private Label displayHumidity;
-    @FXML
-    private Label displayDescription;
-    @FXML
-    private Label currDate;
-    @FXML
-    private Label displayCity;
-    @FXML
-    private TextField locationInput;
-    @FXML
-    private Label firstDescription;
-    @FXML
-    private ImageView firstIcon;
-    @FXML
-    private Label firstTemp;
     @FXML
     private Label secondDescription;
     @FXML
@@ -70,7 +72,7 @@ public class WeatherAppController implements Initializable {
     }
     @FXML
     void displayWeather() {
-        String cityName = locationInput.getText();;
+        String cityName = locationInput.getText();
         Weather weather = weatherService.getWeather(cityName);
         List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
         displayCurrentWeather(weather);
@@ -78,6 +80,23 @@ public class WeatherAppController implements Initializable {
         displayWeatherForecastTwoDaysAfter((ArrayList<ForecastData>) forecastData);
         displayWeatherForecastThreeDaysAfter((ArrayList<ForecastData>) forecastData);
         displayWeatherForecastFourDaysAfter((ArrayList<ForecastData>) forecastData);
+    }
+
+    @FXML
+    void secondButtonOfDisplayWeather() {
+        String cityName = secondLocationInput.getText();
+        Weather weather = weatherService.getWeather(cityName);
+        displayCurrentWeatherInRightPanel(weather);
+    }
+
+    private void displayCurrentWeatherInRightPanel(Weather weather) {
+        String location = secondLocationInput.getText();
+        currDateInRightPanel.setText("" + weather.getDate());
+        displayCityInRightPanel.setText(location);
+        displayTemperatureInRightPanel.setText("" + weather.getTemp() + " \u00b0C");
+        displayHumidityInRightPanel.setText("" + weather.getHumidity() + " %");
+        displayDescriptionInRightPanel.setText("" + weather.getDescription());
+        weatherIconInRightPanel.setImage(new Image(String.valueOf(weather.getIcon())));
     }
 
     private void displayCurrentWeather(Weather weather) {
