@@ -43,17 +43,21 @@ public class WeatherAppController implements Initializable {
 
 
     @FXML
-    private Label secondDate;
+    private Label secondDate, secondDateInRightPanel;
+    @FXML
+    private Label secondDescription,  secondDescriptionInRightPanel;
+    @FXML
+    private Label secondTemp, secondTempInRightPanel;
+    @FXML
+    private ImageView secondIcon, secondIconInRightPanel;
+
     @FXML
     private Label thirdDate;
     @FXML
     private Label fourthDate;
-    @FXML
-    private Label secondDescription;
-    @FXML
-    private Label secondTemp;
-    @FXML
-    private ImageView secondIcon;
+
+
+
     @FXML
     private Label thirdDescription;
     @FXML
@@ -125,8 +129,8 @@ public class WeatherAppController implements Initializable {
         List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
         displayCurrentWeatherInRightPanel(weather);
         displayWeatherForecastDayAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+        displayWeatherForecastTwoDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
     }
-
     private void displayCurrentWeatherInRightPanel(Weather weather) {
         String location = secondLocationInput.getText();
         currDateInRightPanel.setText("" + weather.getDate());
@@ -136,14 +140,18 @@ public class WeatherAppController implements Initializable {
         displayDescriptionInRightPanel.setText("" + weather.getDescription());
         weatherIconInRightPanel.setImage(new Image(String.valueOf(weather.getIcon())));
     }
-
     private void displayWeatherForecastDayAfterInRightPanel(ArrayList<ForecastData> forecastData){
         firstDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(1)));
         firstTempInRightPanel.setText("" +  forecastData.get(0).getTemp() + " \u00b0C");
         firstDescriptionInRightPanel.setText("" + forecastData.get(0).getDescription());
         firstIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(0).getIcon())));
     }
-
+    private void displayWeatherForecastTwoDaysAfterInRightPanel(ArrayList<ForecastData> forecastData){
+        secondDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(2)));
+        secondTempInRightPanel.setText("" +  forecastData.get(1).getTemp() + " \u00b0C");
+        secondDescriptionInRightPanel.setText("" + forecastData.get(1).getDescription());
+        secondIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(1).getIcon())));
+    }
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
     }
