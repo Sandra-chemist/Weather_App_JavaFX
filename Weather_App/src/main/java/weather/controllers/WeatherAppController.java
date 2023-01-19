@@ -87,7 +87,7 @@ public class WeatherAppController implements Initializable {
     private void displayCurrentWeather(Weather weather) {
         String location = locationInput.getText();
         currDate.setText("" + weather.getDate());
-        displayCity.setText(location);
+        displayCity.setText(location.toUpperCase());
         displayTemperature.setText("" + weather.getTemp() + " \u00b0C");
         displayHumidity.setText("" + weather.getHumidity() + " %");
         displayDescription.setText("" + weather.getDescription());
@@ -132,7 +132,7 @@ public class WeatherAppController implements Initializable {
     private void displayCurrentWeatherInRightPanel(Weather weather) {
         String location = secondLocationInput.getText();
         currDateInRightPanel.setText("" + weather.getDate());
-        displayCityInRightPanel.setText(location);
+        displayCityInRightPanel.setText(location.toUpperCase());
         displayTemperatureInRightPanel.setText("" + weather.getTemp() + " \u00b0C");
         displayHumidityInRightPanel.setText("" + weather.getHumidity() + " %");
         displayDescriptionInRightPanel.setText("" + weather.getDescription());
