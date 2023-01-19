@@ -32,15 +32,16 @@ public class WeatherAppController implements Initializable {
     @FXML
     private Label displayDescription, displayDescriptionInRightPanel;
 
+    @FXML
+    private Label firstDate, firstDateInRightPanel;
+    @FXML
+    private Label firstDescription, firstDescriptionInRightPanel;
+    @FXML
+    private Label firstTemp, firstTempInRightPanel;
+    @FXML
+    private ImageView firstIcon,  firstIconInRightPanel;
 
-    @FXML
-    private Label firstDescription;
-    @FXML
-    private ImageView firstIcon;
-    @FXML
-    private Label firstTemp;
-    @FXML
-    private Label firstDate;
+
     @FXML
     private Label secondDate;
     @FXML
@@ -82,23 +83,6 @@ public class WeatherAppController implements Initializable {
         displayWeatherForecastFourDaysAfter((ArrayList<ForecastData>) forecastData);
     }
 
-    @FXML
-    void secondButtonOfDisplayWeather() {
-        String cityName = secondLocationInput.getText();
-        Weather weather = weatherService.getWeather(cityName);
-        displayCurrentWeatherInRightPanel(weather);
-    }
-
-    private void displayCurrentWeatherInRightPanel(Weather weather) {
-        String location = secondLocationInput.getText();
-        currDateInRightPanel.setText("" + weather.getDate());
-        displayCityInRightPanel.setText(location);
-        displayTemperatureInRightPanel.setText("" + weather.getTemp() + " \u00b0C");
-        displayHumidityInRightPanel.setText("" + weather.getHumidity() + " %");
-        displayDescriptionInRightPanel.setText("" + weather.getDescription());
-        weatherIconInRightPanel.setImage(new Image(String.valueOf(weather.getIcon())));
-    }
-
     private void displayCurrentWeather(Weather weather) {
         String location = locationInput.getText();
         currDate.setText("" + weather.getDate());
@@ -133,6 +117,33 @@ public class WeatherAppController implements Initializable {
         fourthDescription.setText("" + forecastData.get(3).getDescription());
         fourthIcon.setImage(new Image(String.valueOf(forecastData.get(3).getIcon())));
     }
+
+    @FXML
+    void secondButtonOfDisplayWeather() {
+        String cityName = secondLocationInput.getText();
+        Weather weather = weatherService.getWeather(cityName);
+        List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
+        displayCurrentWeatherInRightPanel(weather);
+        displayWeatherForecastDayAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+    }
+
+    private void displayCurrentWeatherInRightPanel(Weather weather) {
+        String location = secondLocationInput.getText();
+        currDateInRightPanel.setText("" + weather.getDate());
+        displayCityInRightPanel.setText(location);
+        displayTemperatureInRightPanel.setText("" + weather.getTemp() + " \u00b0C");
+        displayHumidityInRightPanel.setText("" + weather.getHumidity() + " %");
+        displayDescriptionInRightPanel.setText("" + weather.getDescription());
+        weatherIconInRightPanel.setImage(new Image(String.valueOf(weather.getIcon())));
+    }
+
+    private void displayWeatherForecastDayAfterInRightPanel(ArrayList<ForecastData> forecastData){
+        firstDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(1)));
+        firstTempInRightPanel.setText("" +  forecastData.get(0).getTemp() + " \u00b0C");
+        firstDescriptionInRightPanel.setText("" + forecastData.get(0).getDescription());
+        firstIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(0).getIcon())));
+    }
+
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
     }
