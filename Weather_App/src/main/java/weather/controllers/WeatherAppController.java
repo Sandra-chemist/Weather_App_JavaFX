@@ -61,13 +61,13 @@ public class WeatherAppController implements Initializable {
     private ImageView thirdIcon, thirdIconInRightPanel;
 
     @FXML
-    private Label fourthDate;
+    private Label fourthDate, fourthDateInRightPanel;
     @FXML
-    private Label fourthDescription;
+    private Label fourthDescription, fourthDescriptionInRightPanel;
     @FXML
-    private Label fourthTemp;
+    private Label fourthTemp, fourthTempInRightPanel;
     @FXML
-    private ImageView fourthIcon;
+    private ImageView fourthIcon, fourthIconInRightPanel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -84,7 +84,6 @@ public class WeatherAppController implements Initializable {
         displayWeatherForecastThreeDaysAfter((ArrayList<ForecastData>) forecastData);
         displayWeatherForecastFourDaysAfter((ArrayList<ForecastData>) forecastData);
     }
-
     private void displayCurrentWeather(Weather weather) {
         String location = locationInput.getText();
         currDate.setText("" + weather.getDate());
@@ -94,7 +93,6 @@ public class WeatherAppController implements Initializable {
         displayDescription.setText("" + weather.getDescription());
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
     }
-
     private void displayWeatherForecastDayAfter(ArrayList<ForecastData> forecastData){
         firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
         firstTemp.setText("" +  forecastData.get(0).getTemp() + " \u00b0C");
@@ -129,6 +127,7 @@ public class WeatherAppController implements Initializable {
         displayWeatherForecastDayAfterInRightPanel((ArrayList<ForecastData>) forecastData);
         displayWeatherForecastTwoDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
         displayWeatherForecastThreeDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
+        displayWeatherForecastFourDaysAfterInRightPanel((ArrayList<ForecastData>) forecastData);
     }
     private void displayCurrentWeatherInRightPanel(Weather weather) {
         String location = secondLocationInput.getText();
@@ -156,6 +155,12 @@ public class WeatherAppController implements Initializable {
         thirdTempInRightPanel.setText("" +  forecastData.get(2).getTemp() + " \u00b0C");
         thirdDescriptionInRightPanel.setText("" + forecastData.get(2).getDescription());
         thirdIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(2).getIcon())));
+    }
+    private void displayWeatherForecastFourDaysAfterInRightPanel(ArrayList<ForecastData> forecastData){
+        fourthDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(4)));
+        fourthTempInRightPanel.setText("" +  forecastData.get(3).getTemp() + " \u00b0C");
+        fourthDescriptionInRightPanel.setText("" + forecastData.get(3).getDescription());
+        fourthIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(3).getIcon())));
     }
     public void setMainScreenController(MainScreenController mainScreenController) {
         this.mainScreenController = mainScreenController;
