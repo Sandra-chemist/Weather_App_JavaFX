@@ -92,6 +92,7 @@ public class WeatherAppController implements Initializable {
         displayHumidity.setText("" + weather.getHumidity() + " %");
         displayDescription.setText("" + weather.getDescription());
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
+        locationInput.setText("");
     }
     private void displayWeatherForecastDayAfter(ArrayList<ForecastData> forecastData){
         firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
@@ -137,6 +138,7 @@ public class WeatherAppController implements Initializable {
         displayHumidityInRightPanel.setText("" + weather.getHumidity() + " %");
         displayDescriptionInRightPanel.setText("" + weather.getDescription());
         weatherIconInRightPanel.setImage(new Image(String.valueOf(weather.getIcon())));
+        secondLocationInput.setText("");
     }
     private void displayWeatherForecastDayAfterInRightPanel(ArrayList<ForecastData> forecastData){
         firstDateInRightPanel.setText(String.valueOf(LocalDate.now().plusDays(1)));
