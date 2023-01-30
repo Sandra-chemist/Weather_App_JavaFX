@@ -38,7 +38,7 @@ public class OpenWeatherMapClient implements WeatherClient {
         Gson gson = new Gson();
         JsonObject weather = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(0).getAsJsonObject();
 
-        double tempInCelsius = weather.getAsJsonObject("main").get("temp").getAsDouble();
+        int tempInCelsius = (int) Math.round(weather.getAsJsonObject("main").get("temp").getAsDouble());
         int humidityInPercent = weather.getAsJsonObject("main").get("humidity").getAsInt();
         String description = weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
         String iconNumber = weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
@@ -56,25 +56,25 @@ public class OpenWeatherMapClient implements WeatherClient {
         JsonObject thirdDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(24).getAsJsonObject();
         JsonObject fourthDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(32).getAsJsonObject();
 
-        double firstTempInCelsius = firstDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
+        int firstTempInCelsius = (int) Math.round(firstDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
         String firstDescription = firstDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
         String firstIconNumber = firstDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
         String firstIcon = iconURL + firstIconNumber + "@2x.png";
         String firstDate = firstDayWeatherForecast.get("dt_txt").getAsString();
 
-        double secondTempCelsius = secondDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
+        int secondTempCelsius = (int) Math.round(secondDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
         String secondDescription = secondDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
         String secondIconNumber = secondDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
         String secondIcon = iconURL + secondIconNumber + "@2x.png";
         String secondDate = secondDayWeatherForecast.get("dt_txt").getAsString();
 
-        double thirdTempCelsius = thirdDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
+        int thirdTempCelsius = (int) Math.round(thirdDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
         String thirdDescription = thirdDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
         String thirdIconNumber = thirdDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
         String thirdIcon = iconURL + thirdIconNumber + "@2x.png";
         String thirdDate = thirdDayWeatherForecast.get("dt_txt").getAsString();
 
-        double fourthTempCelsius = firstDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble();
+        int fourthTempCelsius = (int) Math.round(firstDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
         String fourthDescription = fourthDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
         String fourthIconNumber = fourthDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
         String fourthIcon = iconURL + fourthIconNumber + "@2x.png";

@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class Weather {
     private final String name;
-    private final double temp;
+    private final int temp;
     private final int humidity;
     private final String description;
-    private final String date;
+     private final String date;
     private final String icon;
 
-    public Weather(String cityName, double tempInCelsius, int humidityInPercent, String descriptionWeather, String date, String icon) {
+    public Weather(String cityName, int tempInCelsius, int humidityInPercent, String descriptionWeather, String date, String icon) {
         this.name = cityName;
         this.temp = tempInCelsius;
         this.humidity = humidityInPercent;
@@ -22,7 +22,7 @@ public class Weather {
     public String getName() {
         return name;
     }
-    public double getTemp() {
+    public int getTemp() {
         return temp;
     }
     public int getHumidity() {
@@ -37,5 +37,7 @@ public class Weather {
     public String getIcon() {
         return icon;
     }
+
+
 
 }
