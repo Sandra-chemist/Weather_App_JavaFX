@@ -18,6 +18,7 @@ public class OpenWeatherMapClient implements WeatherClient {
     private static final String UNITS = "&units=metric";
     private static final String iconURL = "http://openweathermap.org/img/wn/";
     private RestTemplate restTemplate = new RestTemplate();
+    Gson gson = new Gson();
 
     @Nullable
     private String getResponse(String cityName) {
@@ -35,7 +36,6 @@ public class OpenWeatherMapClient implements WeatherClient {
     @Override
     public Weather getWeather(String cityName) {
         String response = getResponse(cityName);
-        Gson gson = new Gson();
         JsonObject weather = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(0).getAsJsonObject();
 
         int tempInCelsius = (int) Math.round(weather.getAsJsonObject("main").get("temp").getAsDouble());
@@ -50,7 +50,6 @@ public class OpenWeatherMapClient implements WeatherClient {
 
     public List<ForecastData> getWeatherForecast(String cityName){
         String response = getResponse(cityName);
-        Gson gson = new Gson();
         JsonObject firstDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(8).getAsJsonObject();
         JsonObject secondDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(16).getAsJsonObject();
         JsonObject thirdDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(24).getAsJsonObject();
