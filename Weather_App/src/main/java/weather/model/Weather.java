@@ -14,7 +14,6 @@ public class Weather {
         this.date = date;
         this.icon = icon;
     }
-
     public int getTemp() {
         return temp;
     }
@@ -30,5 +29,4 @@ public class Weather {
     public String getIcon() {
         return icon;
     }
-
 }

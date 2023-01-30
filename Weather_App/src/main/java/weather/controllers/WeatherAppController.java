@@ -73,9 +73,11 @@ public class WeatherAppController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         weatherService = WeatherServiceFactory.createWeatherService();
     }
-
+    public void setMainScreenController(MainScreenController mainScreenController) {
+        this.mainScreenController = mainScreenController;
+    }
     @FXML
-    void displayWeather() {
+    private void displayWeather() {
         try {
             firstError.setText("");
             String cityName = locationInput.getText();
@@ -144,7 +146,7 @@ public class WeatherAppController implements Initializable {
     }
 
     @FXML
-    void secondButtonOfDisplayWeather() {
+    private void secondButtonOfDisplayWeather() {
         try {
             secondError.setText("");
             String cityName = secondLocationInput.getText();
@@ -211,7 +213,5 @@ public class WeatherAppController implements Initializable {
         fourthDescriptionInRightPanel.setText("" + forecastData.get(3).getDescription());
         fourthIconInRightPanel.setImage(new Image(String.valueOf(forecastData.get(3).getIcon())));
     }
-    public void setMainScreenController(MainScreenController mainScreenController) {
-        this.mainScreenController = mainScreenController;
-    }
+
 }

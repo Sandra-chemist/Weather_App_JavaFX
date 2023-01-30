@@ -7,7 +7,9 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 public class MainPaneController {
     private MainScreenController mainScreenController;
-
+    public void setMainScreenController(MainScreenController mainScreenController) {
+        this.mainScreenController = mainScreenController;
+    }
     @FXML
     void openApplication() {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/weather/WeatherApp.fxml"));
@@ -21,7 +23,5 @@ public class MainPaneController {
         weatherAppController.setMainScreenController(mainScreenController);
         mainScreenController.setScreen(pane);
     }
-    public void setMainScreenController(MainScreenController mainScreenController) {
-        this.mainScreenController = mainScreenController;
-    }
+
 }

@@ -17,21 +17,8 @@ public class OpenWeatherMapClient implements WeatherClient {
     private static final String WEATHER_URL = "https://api.openweathermap.org/data/2.5/forecast?q={city}&appid=";
     private static final String UNITS = "&units=metric";
     private static final String iconURL = "http://openweathermap.org/img/wn/";
-    private RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate = new RestTemplate();
     Gson gson = new Gson();
-
-    @Nullable
-    private String getResponse(String cityName) {
-        String response = null;
-
-        try {
-            response = restTemplate.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
-        }
-        catch (Exception e){
-            System.out.println("City not found");
-        }
-        return response;
-    }
 
     @Override
     public Weather getWeather(String cityName) {
@@ -83,4 +70,18 @@ public class OpenWeatherMapClient implements WeatherClient {
 
         return weatherForecasts;
     }
+
+    @Nullable
+    private String getResponse(String cityName) {
+        String response = null;
+
+        try {
+            response = restTemplate.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
+        }
+        catch (Exception e){
+            System.out.println("City not found");
+        }
+        return response;
+    }
+
 }
