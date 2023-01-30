@@ -1,17 +1,13 @@
 package weather.model;
 
-import java.time.LocalDate;
-
 public class Weather {
-    private final String name;
     private final int temp;
     private final int humidity;
     private final String description;
      private final String date;
     private final String icon;
 
-    public Weather(String cityName, int tempInCelsius, int humidityInPercent, String descriptionWeather, String date, String icon) {
-        this.name = cityName;
+    public Weather(int tempInCelsius, int humidityInPercent, String descriptionWeather, String date, String icon) {
         this.temp = tempInCelsius;
         this.humidity = humidityInPercent;
         this.description = descriptionWeather;
@@ -19,9 +15,6 @@ public class Weather {
         this.icon = icon;
     }
 
-    public String getName() {
-        return name;
-    }
     public int getTemp() {
         return temp;
     }
@@ -37,7 +30,5 @@ public class Weather {
     public String getIcon() {
         return icon;
     }
-
-
 
 }
