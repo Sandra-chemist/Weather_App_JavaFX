@@ -84,10 +84,8 @@ public class WeatherAppController implements Initializable {
             Weather weather = weatherService.getWeather(cityName);
             List<ForecastData> forecastData = weatherService.getWeatherForecast(cityName);
             displayCurrentWeather(weather);
-            displayWeatherForecastDayAfter((ArrayList<ForecastData>) forecastData);
-            displayWeatherForecastTwoDaysAfter((ArrayList<ForecastData>) forecastData);
-            displayWeatherForecastThreeDaysAfter((ArrayList<ForecastData>) forecastData);
-            displayWeatherForecastFourDaysAfter((ArrayList<ForecastData>) forecastData);
+            displayWeatherForecast((ArrayList<ForecastData>) forecastData);
+
         } catch (Exception e){
             firstError.setText("City not found!");
             locationInput.setText("");
@@ -120,29 +118,43 @@ public class WeatherAppController implements Initializable {
         weatherIcon.setImage(new Image(String.valueOf(weather.getIcon())));
         locationInput.setText("");
     }
-    private void displayWeatherForecastDayAfter(ArrayList<ForecastData> forecastData){
-        firstDate.setText(String.valueOf(LocalDate.now().plusDays(1)));
-        firstTemp.setText("" +  forecastData.get(0).getTemp() + " °C");
-        firstDescription.setText("" + forecastData.get(0).getDescription());
-        firstIcon.setImage(new Image(String.valueOf(forecastData.get(0).getIcon())));
-    }
-    private void displayWeatherForecastTwoDaysAfter(ArrayList<ForecastData> forecastData){
-        secondDate.setText(String.valueOf(LocalDate.now().plusDays(2)));
-        secondTemp.setText("" +  forecastData.get(1).getTemp() + " °C");
-        secondDescription.setText("" + forecastData.get(1).getDescription());
-        secondIcon.setImage(new Image(String.valueOf(forecastData.get(1).getIcon())));
-    }
-    private void displayWeatherForecastThreeDaysAfter(ArrayList<ForecastData> forecastData){
-        thirdDate.setText(String.valueOf(LocalDate.now().plusDays(3)));
-        thirdTemp.setText("" +  forecastData.get(2).getTemp() + " °C");
-        thirdDescription.setText("" + forecastData.get(2).getDescription());
-        thirdIcon.setImage(new Image(String.valueOf(forecastData.get(2).getIcon())));
-    }
-    private void displayWeatherForecastFourDaysAfter(ArrayList<ForecastData> forecastData){
-        fourthDate.setText(String.valueOf(LocalDate.now().plusDays(4)));
-        fourthTemp.setText("" +  forecastData.get(3).getTemp() + " °C");
-        fourthDescription.setText("" + forecastData.get(3).getDescription());
-        fourthIcon.setImage(new Image(String.valueOf(forecastData.get(3).getIcon())));
+    private void displayWeatherForecast(ArrayList<ForecastData> forecastData){
+        System.out.println(forecastData.size());
+        for (int i = 1; i < 5; i++) {
+            String date = String.valueOf(LocalDate.now().plusDays(i));
+            if (i == 1) {
+                firstDate.setText(date);
+            } else if (i == 2) {
+                secondDate.setText(date);
+            } else if (i == 3) {
+                thirdDate.setText(date);
+            } else if (i == 4) {
+                fourthDate.setText(date);
+            }
+        }
+
+        for (int num = 0; num <forecastData.size(); num++) {
+            String temp = "" +  forecastData.get(num).getTemp() + " °C";
+            String description = "" + forecastData.get(num).getDescription();
+            Image image = new Image(String.valueOf(forecastData.get(num).getIcon()));
+            if (num == 0 ) {
+                firstTemp.setText(temp);
+                firstDescription.setText(description);
+                firstIcon.setImage(image);
+            } else if (num == 1) {
+                secondTemp.setText(temp);
+                secondDescription.setText(description);
+                secondIcon.setImage(image);
+            } else if (num == 2) {
+                thirdTemp.setText(temp);
+                thirdDescription.setText(description);
+                thirdIcon.setImage(image);
+            } else if (num == 3) {
+                fourthTemp.setText(temp);
+                fourthDescription.setText(description);
+                fourthIcon.setImage(image);
+            }
+        }
     }
 
     @FXML
