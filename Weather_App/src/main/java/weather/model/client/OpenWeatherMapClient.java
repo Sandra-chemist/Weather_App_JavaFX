@@ -28,49 +28,48 @@ public class OpenWeatherMapClient implements WeatherClient {
         int tempInCelsius = (int) Math.round(weather.getAsJsonObject("main").get("temp").getAsDouble());
         int humidityInPercent = weather.getAsJsonObject("main").get("humidity").getAsInt();
         String description = weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
-        String iconNumber = weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
-        String icon = iconURL + iconNumber + "@2x.png";
+        String icon = iconURL + weather.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString() + "@2x.png";
         String date = weather.get("dt_txt").getAsString();
 
         return new Weather(tempInCelsius, humidityInPercent, description, date, icon);
     }
-
     public List<ForecastData> getWeatherForecast(String cityName){
+
+        List<ForecastData> weatherForecasts = new ArrayList<>();
         String response = getResponse(cityName);
-        JsonObject firstDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(8).getAsJsonObject();
-        JsonObject secondDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(16).getAsJsonObject();
-        JsonObject thirdDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(24).getAsJsonObject();
-        JsonObject fourthDayWeatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(32).getAsJsonObject();
+        int firstTemp, secondTemp, thirdTemp, fourthTemp;
+        String firstDescription, secondDescription, thirdDescription, fourthDescription;
+        String firstIcon, secondIcon, thirdIcon, fourthIcon;
 
-        int firstTempInCelsius = (int) Math.round(firstDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
-        String firstDescription = firstDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
-        String firstIconNumber = firstDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
-        String firstIcon = iconURL + firstIconNumber + "@2x.png";
-
-        int secondTempCelsius = (int) Math.round(secondDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
-        String secondDescription = secondDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
-        String secondIconNumber = secondDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
-        String secondIcon = iconURL + secondIconNumber + "@2x.png";
-
-        int thirdTempCelsius = (int) Math.round(thirdDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
-        String thirdDescription = thirdDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
-        String thirdIconNumber = thirdDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
-        String thirdIcon = iconURL + thirdIconNumber + "@2x.png";
-
-        int fourthTempCelsius = (int) Math.round(firstDayWeatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
-        String fourthDescription = fourthDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
-        String fourthIconNumber = fourthDayWeatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString();
-        String fourthIcon = iconURL + fourthIconNumber + "@2x.png";
-
-        List<ForecastData> weatherForecasts = new ArrayList<ForecastData>();
-        weatherForecasts.add(new ForecastData(firstDescription, firstTempInCelsius, firstIcon));
-        weatherForecasts.add(new ForecastData(secondDescription, secondTempCelsius, secondIcon));
-        weatherForecasts.add(new ForecastData(thirdDescription, thirdTempCelsius, thirdIcon));
-        weatherForecasts.add(new ForecastData(fourthDescription, fourthTempCelsius, fourthIcon));
-
+        for (int i = 0; i < 33; i++) {
+            JsonObject weatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(i).getAsJsonObject();
+            int tempInCelsius = (int) Math.round(weatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
+            String description = weatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
+            String icon = iconURL + weatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString() + "@2x.png";
+            if (i == 8) {
+                firstTemp = tempInCelsius;
+                firstDescription = description;
+                firstIcon = icon;
+                weatherForecasts.add(new ForecastData(firstDescription, firstTemp, firstIcon));
+            } else if (i == 16) {
+                secondTemp = tempInCelsius;
+                secondDescription = description;
+                secondIcon = icon;
+                weatherForecasts.add(new ForecastData(secondDescription, secondTemp, secondIcon));
+            } else if (i == 24) {
+                thirdTemp = tempInCelsius;
+                thirdDescription = description;
+                thirdIcon = icon;;
+                weatherForecasts.add(new ForecastData(thirdDescription, thirdTemp, thirdIcon));
+            } else if (i == 32) {
+                fourthTemp = tempInCelsius;
+                fourthDescription = description;
+                fourthIcon = icon;
+                weatherForecasts.add(new ForecastData(fourthDescription, fourthTemp, fourthIcon));
+            }
+        }
         return weatherForecasts;
     }
-
     @Nullable
     private String getResponse(String cityName) {
         String response = null;
