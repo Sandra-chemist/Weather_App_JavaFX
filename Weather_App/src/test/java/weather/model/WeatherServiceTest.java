@@ -9,6 +9,7 @@ import weather.model.client.WeatherClient;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,5 +30,14 @@ public class WeatherServiceTest {
 
         //then
         assertThat(result,is(expectedCurrentWeather));
+    }
+
+    @Test
+    void shouldThrowFailedToGetWeatherExceptionWhenCannotGetWeather() {
+        //given
+        given(weatherClient.getWeather("city")).willThrow(new RuntimeException());
+
+        //when & then
+        assertThrows(FailedToGetWeatherException.class, () -> weatherService.getWeather("city"));
     }
 }
