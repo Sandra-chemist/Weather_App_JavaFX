@@ -7,6 +7,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import weather.model.client.WeatherClient;
 
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,7 +33,6 @@ public class WeatherServiceTest {
         //then
         assertThat(result,is(expectedCurrentWeather));
     }
-
     @Test
     void shouldThrowFailedToGetWeatherExceptionWhenCannotGetWeather() {
         //given
@@ -40,4 +41,20 @@ public class WeatherServiceTest {
         //when & then
         assertThrows(FailedToGetWeatherException.class, () -> weatherService.getWeather("city"));
     }
+    @Test
+    void shouldReturnWeatherForecastList() {
+        //given
+        List<ForecastData> expectedWeatherForecasts = List.of(
+                new ForecastData("light rain", 7, null),
+                new ForecastData("rain", 15, null));
+        String cityName = "Ateny";
+        given(weatherClient.getWeatherForecast(cityName)).willReturn(expectedWeatherForecasts);
+
+        //when
+        List<ForecastData> result = weatherService.getWeatherForecast(cityName);
+
+        //then
+        assertThat(result, is(expectedWeatherForecasts));
+    }
+
 }
