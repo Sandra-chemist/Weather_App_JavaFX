@@ -11,12 +11,10 @@ public class WeatherService {
     }
     public Weather getWeather(String cityName){
         try {
-            Weather weather = weatherClient.getWeather(cityName);
             return weatherClient.getWeather(cityName);
         } catch (Exception e) {
-            System.out.println("Something went wrong");
+            throw new FailedToGetWeatherException("Failed to get weather", e);
         }
-        return null;
     }
     public List<ForecastData> getWeatherForecast(String cityName){
         return weatherClient.getWeatherForecast(cityName);
