@@ -16,6 +16,8 @@ import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 public class WeatherServiceTest {
+
+    String cityName = "Ateny";
     @InjectMocks
     private WeatherService weatherService;
     @Mock
@@ -24,7 +26,6 @@ public class WeatherServiceTest {
     void shouldReturnCurrentWeatherForecast(){
         //given
         Weather expectedCurrentWeather = new Weather(7, 75, "light rain", "2023-02-09", null);
-        String cityName = "Ateny";
         given(weatherClient.getWeather(cityName)).willReturn(expectedCurrentWeather);
 
         //when
@@ -47,7 +48,6 @@ public class WeatherServiceTest {
         List<ForecastData> expectedWeatherForecasts = List.of(
                 new ForecastData("light rain", 7, null),
                 new ForecastData("rain", 15, null));
-        String cityName = "Ateny";
         given(weatherClient.getWeatherForecast(cityName)).willReturn(expectedWeatherForecasts);
 
         //when
