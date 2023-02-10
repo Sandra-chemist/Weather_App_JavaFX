@@ -17,6 +17,10 @@ public class WeatherService {
         }
     }
     public List<ForecastData> getWeatherForecast(String cityName){
-        return weatherClient.getWeatherForecast(cityName);
+        try {
+            return weatherClient.getWeatherForecast(cityName);
+        } catch (Exception e) {
+            throw new FailedToGetWeatherException("Failed to get weather", e);
+        }
     }
 }
