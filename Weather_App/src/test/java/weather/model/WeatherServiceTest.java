@@ -56,5 +56,12 @@ public class WeatherServiceTest {
         //then
         assertThat(result, is(expectedWeatherForecasts));
     }
+    @Test
+    void shouldThrowFailedToGetWeatherExceptionWhenCannotGetWeatherList() {
+        //given
+        given(weatherClient.getWeatherForecast("city")).willThrow(new RuntimeException());
 
+        //when & then
+        assertThrows(FailedToGetWeatherException.class, () -> weatherService.getWeatherForecast("city"));
+    }
 }
