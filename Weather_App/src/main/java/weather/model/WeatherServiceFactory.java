@@ -2,7 +2,7 @@ package weather.model;
 
 import weather.model.client.OpenWeatherMapClient;
 
-public class WeatherServiceFactory {
+public class  WeatherServiceFactory {
 
     public static WeatherService createWeatherService(){
         return new WeatherService(createWeatherClient());
