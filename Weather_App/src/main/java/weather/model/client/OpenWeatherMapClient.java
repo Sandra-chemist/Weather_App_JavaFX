@@ -34,6 +34,7 @@ public class OpenWeatherMapClient implements WeatherClient {
 
         return new Weather(tempInCelsius, humidityInPercent, description, date, icon);
     }
+
     public List<ForecastData> getWeatherForecast(String cityName){
         List<ForecastData> weatherForecasts = new ArrayList<>();
 

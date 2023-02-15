@@ -5,9 +5,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import weather.model.ForecastData;
 import weather.model.Weather;
 import weather.model.WeatherService;
 
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -22,7 +26,7 @@ public class OpenWeatherMapClientTest {
     private OpenWeatherMapClient openWeatherMapClient;
 
     @Test
-    void shouldReturnWeatherForecastObject(){
+    void shouldReturnWeatherForecastObject() {
         //given
         Weather expectedCurrentWeather = new Weather(7, 75, "light rain", "2023-02-09", null);
         given(openWeatherMapClient.getWeather(cityName)).willReturn(expectedCurrentWeather);
@@ -32,5 +36,21 @@ public class OpenWeatherMapClientTest {
 
         //then
         assertThat(result, sameInstance(expectedCurrentWeather));
+    }
+
+    @Test
+    void shouldReturnWeatherForecastList() {
+        //given
+        List<ForecastData> expectedWeatherForecasts = List.of(
+                new ForecastData("light rain", 7, null),
+                new ForecastData("rain", 15, null));
+        given(weatherService.getWeatherForecast(cityName)).willReturn(expectedWeatherForecasts);
+
+        //when
+        List<ForecastData> result = openWeatherMapClient.getWeatherForecast(cityName);
+
+        //then
+        assertThat(result, sameInstance(expectedWeatherForecasts));
+
     }
 }
