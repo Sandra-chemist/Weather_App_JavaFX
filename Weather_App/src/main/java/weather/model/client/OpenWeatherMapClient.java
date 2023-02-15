@@ -24,7 +24,6 @@ public class OpenWeatherMapClient implements WeatherClient {
     public Weather getWeather(String cityName) {
         String response = getResponse(cityName);
         JsonObject weather = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(0).getAsJsonObject();
-        System.out.println(weather);
 
         int tempInCelsius = (int) Math.round(weather.getAsJsonObject("main").get("temp").getAsDouble());
         int humidityInPercent = weather.getAsJsonObject("main").get("humidity").getAsInt();
@@ -34,7 +33,6 @@ public class OpenWeatherMapClient implements WeatherClient {
 
         return new Weather(tempInCelsius, humidityInPercent, description, date, icon);
     }
-
     public List<ForecastData> getWeatherForecast(String cityName){
         List<ForecastData> weatherForecasts = new ArrayList<>();
 
@@ -45,8 +43,6 @@ public class OpenWeatherMapClient implements WeatherClient {
 
         for (int i = 0; i < 33; i++) {
             JsonObject weatherForecast = gson.fromJson(response, JsonObject.class).getAsJsonArray("list").get(i).getAsJsonObject();
-            System.out.println(weatherForecast);
-            System.out.println("");
             int tempInCelsius = (int) Math.round(weatherForecast.getAsJsonObject("main").get("temp").getAsDouble());
             String description = weatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("description").getAsString();
             String icon = iconURL + weatherForecast.getAsJsonArray("weather").get(0).getAsJsonObject().get("icon").getAsString() + "@2x.png";
@@ -80,7 +76,6 @@ public class OpenWeatherMapClient implements WeatherClient {
 
         try {
             response = restTemplate.getForObject(WEATHER_URL + Config.getAPIKey() + UNITS, String.class, cityName);
-
         }
         catch (Exception e){
             System.out.println("City not found");

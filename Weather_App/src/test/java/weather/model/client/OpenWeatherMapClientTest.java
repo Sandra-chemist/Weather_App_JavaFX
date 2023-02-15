@@ -1,5 +1,8 @@
 package weather.model.client;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -9,6 +12,8 @@ import weather.model.ForecastData;
 import weather.model.Weather;
 import weather.model.WeatherService;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -52,5 +57,16 @@ public class OpenWeatherMapClientTest {
         //then
         assertThat(result, sameInstance(expectedWeatherForecasts));
 
+    }
+    @Test
+    void shouldReturnCorrectTemperature() {
+        //given
+        OpenWeatherMapClientStub openWeatherMapClientStub = new OpenWeatherMapClientStub();
+
+        //when
+        int temp = openWeatherMapClientStub.getWeather(cityName).getTemp() ;
+
+        //then
+        assertThat(temp, is(12));
     }
 }
