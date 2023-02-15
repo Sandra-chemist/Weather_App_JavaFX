@@ -18,6 +18,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 
@@ -59,26 +60,20 @@ public class OpenWeatherMapClientTest {
 
     }
     @Test
-    void shouldReturnCorrectTemperature() {
+    void shouldReturnCorrectValue() {
         //given
         OpenWeatherMapClientStub openWeatherMapClientStub = new OpenWeatherMapClientStub();
 
         //when
-        int temp = openWeatherMapClientStub.getWeather(cityName).getTemp() ;
+        int temp = openWeatherMapClientStub.getWeather(cityName).getTemp();
+        String description = openWeatherMapClientStub.getWeather(cityName).getDescription();
 
         //then
-        assertThat(temp, is(12));
+        assertAll(
+                () ->  assertThat(temp, is(12)),
+                () ->  assertThat(description, notNullValue())
+
+        );
     }
 
-    @Test
-    void shouldReturnCorrectDescription() {
-        //given
-        OpenWeatherMapClientStub openWeatherMapClientStub = new OpenWeatherMapClientStub();
-
-        //when
-        String description = openWeatherMapClientStub.getWeather(cityName).getDescription() ;
-
-        //then
-        assertThat(description, notNullValue());
-    }
 }
