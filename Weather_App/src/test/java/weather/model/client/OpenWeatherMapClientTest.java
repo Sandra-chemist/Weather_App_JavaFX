@@ -1,41 +1,36 @@
 package weather.model.client;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.web.client.RestTemplate;
+import weather.model.Weather;
+import weather.model.WeatherService;
 
-import java.io.FileReader;
-import java.io.IOException;
+import static org.hamcrest.CoreMatchers.sameInstance;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 public class OpenWeatherMapClientTest {
 
+    String cityName = "Ateny";
+    @InjectMocks
+    private WeatherService weatherService;
     @Mock
-    private RestTemplate restTemplate;
     private OpenWeatherMapClient openWeatherMapClient;
-    @BeforeEach
-    void setUp() {
-        openWeatherMapClient = new OpenWeatherMapClient();
-        restTemplate = new RestTemplate();
+
+    @Test
+    void shouldReturnWeatherForecastObject(){
+        //given
+        Weather expectedCurrentWeather = new Weather(7, 75, "light rain", "2023-02-09", null);
+        given(openWeatherMapClient.getWeather(cityName)).willReturn(expectedCurrentWeather);
+
+        //when
+        Weather result = weatherService.getWeather(cityName);
+
+        //then
+        assertThat(result, sameInstance(expectedCurrentWeather));
     }
-
-    private String getWeatherFromJson() {
-        String filePath = "weatherForecast.json";
-
-        try (FileReader fileReader = new FileReader(ClassLoader.getSystemResource(filePath).getFile())) {
-            Gson gson = new Gson();
-            JsonObject weather = gson.fromJson(fileReader, JsonObject.class);
-            String weatherForecast = weather.toString();
-            System.out.println(weatherForecast);
-        } catch (IOException e) {
-            e.printStackTrace();
-        };
-        return filePath;
-    }
-
 }
