@@ -16,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 
+import static java.util.Optional.empty;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -66,13 +67,18 @@ public class OpenWeatherMapClientTest {
 
         //when
         int temp = openWeatherMapClientStub.getWeather(cityName).getTemp();
+        int humidity = openWeatherMapClientStub.getWeather(cityName).getHumidity();
         String description = openWeatherMapClientStub.getWeather(cityName).getDescription();
+        String icon = openWeatherMapClientStub.getWeather(cityName).getIcon();
+        String date = openWeatherMapClientStub.getWeather(cityName).getDate();
 
         //then
         assertAll(
                 () ->  assertThat(temp, is(12)),
-                () ->  assertThat(description, notNullValue())
-
+                () ->  assertThat(humidity,is(not(empty()))),
+                () ->  assertThat(description, notNullValue()),
+                () -> assertThat(icon, nullValue()),
+                () -> assertThat(date, is("2023-02-14 15:00:00"))
         );
     }
 
