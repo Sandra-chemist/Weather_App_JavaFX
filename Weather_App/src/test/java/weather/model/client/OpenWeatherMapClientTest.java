@@ -16,9 +16,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.sameInstance;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -68,5 +68,17 @@ public class OpenWeatherMapClientTest {
 
         //then
         assertThat(temp, is(12));
+    }
+
+    @Test
+    void shouldReturnCorrectDescription() {
+        //given
+        OpenWeatherMapClientStub openWeatherMapClientStub = new OpenWeatherMapClientStub();
+
+        //when
+        String description = openWeatherMapClientStub.getWeather(cityName).getDescription() ;
+
+        //then
+        assertThat(description, notNullValue());
     }
 }
