@@ -1,0 +1,36 @@
+{
+  "clouds": {
+    "all": 14
+  },
+  "dt": 1676386800,
+  "dt_txt": "2023-02-14 15:00:00",
+  "main": {
+    "feels_like": 10.86,
+    "grnd_level": 1019,
+    "humidity": 51,
+    "pressure": 1025,
+    "sea_level": 1025,
+    "temp": 12.25,
+    "temp_kf": 1.09,
+    "temp_max": 12.25,
+    "temp_min": 11.16
+  },
+  "pop": 0,
+  "sys": {
+    "pod": "d"
+  },
+  "visibility": 10000,
+  "weather": [
+    {
+      "description": "few clouds",
+      "icon": "02d",
+      "id": 801,
+      "main": "Clouds"
+    }
+  ],
+  "wind": {
+    "deg": 5,
+    "gust": 3.38,
+    "speed": 2.97
+  }
+}

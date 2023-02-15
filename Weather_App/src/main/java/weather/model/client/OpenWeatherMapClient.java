@@ -34,8 +34,8 @@ public class OpenWeatherMapClient implements WeatherClient {
         return new Weather(tempInCelsius, humidityInPercent, description, date, icon);
     }
     public List<ForecastData> getWeatherForecast(String cityName){
-
         List<ForecastData> weatherForecasts = new ArrayList<>();
+
         String response = getResponse(cityName);
         int firstTemp, secondTemp, thirdTemp, fourthTemp;
         String firstDescription, secondDescription, thirdDescription, fourthDescription;
@@ -59,7 +59,7 @@ public class OpenWeatherMapClient implements WeatherClient {
             } else if (i == 24) {
                 thirdTemp = tempInCelsius;
                 thirdDescription = description;
-                thirdIcon = icon;;
+                thirdIcon = icon;
                 weatherForecasts.add(new ForecastData(thirdDescription, thirdTemp, thirdIcon));
             } else if (i == 32) {
                 fourthTemp = tempInCelsius;
