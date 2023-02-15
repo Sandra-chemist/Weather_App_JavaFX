@@ -1,8 +1,5 @@
 package weather.model.client;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,15 +9,12 @@ import weather.model.ForecastData;
 import weather.model.Weather;
 import weather.model.WeatherService;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.List;
 
 import static java.util.Optional.empty;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -66,11 +60,11 @@ public class OpenWeatherMapClientTest {
         OpenWeatherMapClientStub openWeatherMapClientStub = new OpenWeatherMapClientStub();
 
         //when
-        int temp = openWeatherMapClientStub.getWeather(cityName).getTemp();
-        int humidity = openWeatherMapClientStub.getWeather(cityName).getHumidity();
-        String description = openWeatherMapClientStub.getWeather(cityName).getDescription();
-        String icon = openWeatherMapClientStub.getWeather(cityName).getIcon();
-        String date = openWeatherMapClientStub.getWeather(cityName).getDate();
+        int temp = openWeatherMapClientStub.getWeather().getTemp();
+        int humidity = openWeatherMapClientStub.getWeather().getHumidity();
+        String description = openWeatherMapClientStub.getWeather().getDescription();
+        String icon = openWeatherMapClientStub.getWeather().getIcon();
+        String date = openWeatherMapClientStub.getWeather().getDate();
 
         //then
         assertAll(

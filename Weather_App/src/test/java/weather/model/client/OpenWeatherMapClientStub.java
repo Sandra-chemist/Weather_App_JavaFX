@@ -23,7 +23,7 @@ public class OpenWeatherMapClientStub {
        return null;
     }
 
-    public Weather getWeather(String cityName) {
+    public Weather getWeather() {
         Gson gson = new Gson();
         JsonObject weather = gson.fromJson(getWeatherFromJson(), JsonObject.class).getAsJsonObject();
 
